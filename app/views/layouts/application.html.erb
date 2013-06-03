@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AutoGomeUtil</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+ <!-- header  -->
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+            <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                    </a>
+                
+                    <div class="span7 nav-collapse">
+                            <ul class="nav">
+                                    <li style="font-family: KaiTi; font-size: 17px"><a href="/">首页</a></li>
+                                    <li style="font-family: KaiTi; font-size: 17px"><a href="/">相关工具</a></li>
+                                    <li style="font-family: KaiTi; font-size: 17px"><a href="/">功能测试</a></li>
+                                    <li style="font-family: KaiTi; font-size: 17px"><a href="/">冒烟测试</a></li>
+                                    <li style="font-family: KaiTi; font-size: 17px"><a href="/">使用说明</a></li>
+                            </ul>
+                    </div>
+                   
+                    <div class="span4 text-right">
+                        <ul class="nav">
+                            <% if session[:user].nil?%>
+                                <li style="font-family: KaiTi; font-size: 17px" ><a href="">登录</a></li>
+                            <%else%>
+                                <li style="font-family: KaiTi; font-size: 17px"><a href="">当前用户: <strong><%= session[:user]%></strong> |</a> </li>
+                                <li style="font-family: KaiTi; font-size: 17px"><a href="">退出</a></li>   
+                            <% end%>
+                        </ul>
+                    </div>
+            </div>
+    </div>
+</div> 
+ 
+ <!-- <div style="height: 40px; background-color: black; text-align:center">
+ </div> -->
+<%= yield %>
+</body>
+</html>
