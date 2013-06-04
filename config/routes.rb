@@ -1,10 +1,21 @@
 GAutomation::Application.routes.draw do
+  get "equip/uploadify"
+
+  get "user_behave/login"
+
+  get "user_behave/logout"
+
   get "index/index"
 
   get "index/introduction"
 
   resources :users
 
+ get "user_behave/login" => "user_behave#login", :as=>"login"
+ 
+ post "user_behave/login" => "user_behave#try_login", :as=>"login"
+ 
+ get "user_behave/logout" => "user_behave#logout", :as => "logout"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

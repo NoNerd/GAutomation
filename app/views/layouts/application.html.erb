@@ -18,23 +18,40 @@
                             <span class="icon-bar"></span>
                     </a>
                 
-                    <div class="span7 nav-collapse">
+                    <div class="span6 nav-collapse">
                             <ul class="nav">
-                                    <li style="font-family: KaiTi; font-size: 17px"><a href="/">首页</a></li>
-                                    <li style="font-family: KaiTi; font-size: 17px"><a href="/">相关工具</a></li>
-                                    <li style="font-family: KaiTi; font-size: 17px"><a href="/">功能测试</a></li>
-                                    <li style="font-family: KaiTi; font-size: 17px"><a href="/">冒烟测试</a></li>
-                                    <li style="font-family: KaiTi; font-size: 17px"><a href="/">使用说明</a></li>
+                                    <li style="font-family: KaiTi; font-size: 15px"><a href="/">首页</a></li>
+                                    <li style="font-family: KaiTi; font-size: 15px"><a href="/">相关工具</a></li>
+                                    <li style="font-family: KaiTi; font-size: 15px" class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" id="dLabel" role="button" data-target="#" href="">功能测试<b class="caret"></b></a>
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                            <li>
+                                                <a href>任务管理</a>
+                                                <a href>用例管理</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li style="font-family: KaiTi; font-size: 15px"><a href="/">冒烟测试</a></li>
+                                    <li style="font-family: KaiTi; font-size: 15px"><a href="/">使用说明</a></li>
                             </ul>
                     </div>
                    
-                    <div class="span4 text-right">
+                    <div class="span5 text-right">
                         <ul class="nav">
                             <% if session[:user].nil?%>
-                                <li style="font-family: KaiTi; font-size: 17px" ><a href="">登录</a></li>
+                                <li style="font-family: KaiTi; font-size: 15px" ><%= link_to '登录', login_path%></li>
                             <%else%>
-                                <li style="font-family: KaiTi; font-size: 17px"><a href="">当前用户: <strong><%= session[:user]%></strong> |</a> </li>
-                                <li style="font-family: KaiTi; font-size: 17px"><a href="">退出</a></li>   
+                                <li style="font-family: KaiTi; font-size: 15px"><a href="">当前用户: <strong><%= session[:user].username%></strong>
+                                    <% case session[:user].position%>
+                                        <% when 0%>
+                                            (管理员)
+                                        <% when 1%>
+                                            (操作人员)
+                                        <% when 2%>
+                                            (游客)
+                                    <%end%>
+                                    |</a> </li>
+                                <li style="font-family: KaiTi; font-size: 15px"><%= link_to '登出', logout_path%></li>   
                             <% end%>
                         </ul>
                     </div>
@@ -42,8 +59,20 @@
     </div>
 </div> 
  
- <!-- <div style="height: 40px; background-color: black; text-align:center">
- </div> -->
+
 <%= yield %>
+
+<div class="container">
+    <div class="thumbnail">
+        <div class="container">
+        <p class="kt18" style="padding-top:5px;padding-left:16px;" >某些操作可能需要 <a href ="" class="btn btn-primary" >登录 </a> 或者联系相关人员</p>
+        </div>
+    </div>
+</div>
+
+<br/>
+<div class="container">
+    <p class="kt18" style="color: gray;">这是页尾 ..........</p>
+</div>
 </body>
 </html>

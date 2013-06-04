@@ -1,0 +1,45 @@
+<div class="hero-unit">
+    <div class="container">
+        <h1 style="font-family:Kaiti; font-size:35px;color:white">网站登录</h1>
+        <br/>
+        <p style="font-family:Kaiti;color:white">网站的某些功能需要指定的用户，针对要进行的操作选择合适用户。</p>
+    </div>
+</div>        
+
+<%  if  notice%>
+        <div class="container">
+        <div class="alert alert-error" style="font-family: Kaiti">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                 <%= notice%>
+        </div>
+        </div>
+<%end%>
+
+
+<div class="container">
+    <div class="thumbnail span6" style="text-align: center;padding:0px">
+            <%= form_tag do%>
+                    <fieldset>
+                        <br/>
+                        <p  style="padding-top: 5px;font-family: Kaiti;font-size:25px;">登   录</p>
+                        <br/>
+                        
+                        <p class="kt18">用户名  <%= text_field_tag :name, params[:name]%></p>
+                        <p class="kt18">密     码  <%= text_field_tag :password, params[:password], :type=>"password"%></p>                        
+                        
+                        <p class="kt18"><input type="submit" class="btn btn-big kaiti" value="提交"/>  或  <input type="reset" value="清空" class="btn kaiti"></p> 
+                        
+                    </fieldset>
+            <%end%>    
+    </div>
+    <div class="thumbnail span4 offset1 text-info" >
+        <br/>
+        <p class="kt18"><strong class="text-info"> 权限说明 </strong></p>
+         <p class="kt15">管理员：维护网站与用户信息</p>
+        <p class="kt15">操作人员：维护测试脚本、运行测试用例</p>
+        <p class="kt15">游客： 只能进行浏览</p>
+   
+    </div>
+</div>
+
+<br/>
