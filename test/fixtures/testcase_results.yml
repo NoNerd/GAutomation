@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  testcase_id: 1
+  result: 1
+  counter: 1
+  status: 1
+  ipaddress: MyString
+
+two:
+  testcase_id: 1
+  result: 1
+  counter: 1
+  status: 1
+  ipaddress: MyString

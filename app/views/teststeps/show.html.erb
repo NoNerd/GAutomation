@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Testcase:</b>
+  <%= @teststep.testcase_id %>
+</p>
+
+<p>
+  <b>Step:</b>
+  <%= @teststep.step %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @teststep.description %>
+</p>
+
+<p>
+  <b>Step method:</b>
+  <%= @teststep.step_method %>
+</p>
+
+<p>
+  <b>Obj name:</b>
+  <%= @teststep.obj_name %>
+</p>
+
+<p>
+  <b>Call method:</b>
+  <%= @teststep.call_method %>
+</p>
+
+<p>
+  <b>Input:</b>
+  <%= @teststep.input %>
+</p>
+
+<p>
+  <b>Expect:</b>
+  <%= @teststep.expect %>
+</p>
+
+<p>
+  <b>Run:</b>
+  <%= @teststep.run %>
+</p>
+
+
+<%= link_to 'Edit', edit_teststep_path(@teststep) %> |
+<%= link_to 'Back', teststeps_path %>

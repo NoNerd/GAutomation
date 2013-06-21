@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  testcase_id: 1
+  step: 1
+  description: MyString
+  step_method: MyString
+  obj_name: MyString
+  call_method: MyString
+  input: MyString
+  expect: MyString
+  run: 1
+
+two:
+  testcase_id: 1
+  step: 1
+  description: MyString
+  step_method: MyString
+  obj_name: MyString
+  call_method: MyString
+  input: MyString
+  expect: MyString
+  run: 1

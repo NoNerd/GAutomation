@@ -1,0 +1,9 @@
+str = ""
+
+str = "<p class='kt15  text-info'  ><%= @task.description%></p>"
+
+<% @testcases.each do |tc| %>
+        str = str + "<p class='kt18'><font class='cm15'><%= tc.name%>:</font> <%= tc.description%></p>"
+<%end%>
+
+$('#tkandtc').html(str);

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ipaddress: MyString
+  smokescriptpath: MyString
+  funcscriptpath: MyString
+  status: MyString
+
+two:
+  ipaddress: MyString
+  smokescriptpath: MyString
+  funcscriptpath: MyString
+  status: MyString

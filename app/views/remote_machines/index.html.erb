@@ -1,0 +1,55 @@
+<%= render 'header'%>
+
+<div class="container">
+    <div class="thumbnail span11">
+            <p class="kt15">机器状态说明：</p>
+            <div class="span5">
+            <p class="kt15"><font class="comic text-info" style="font-size:15px">Online Free: </font>机器闲置，且可以进行控制</p>
+            <p class="kt15"><font class="comic text-warning" style="font-size:15px">HTTP/Function Running: </font>机器正在运行中</p>
+            
+            </div>
+            <div class="span4 offset1">
+            <p class="kt15"><font class="comic text-error" style="font-size:15px">Unchecked: </font>未知状态，需要执行检测</p>
+            <p class="kt15"><font class="comic text-error" style="font-size:15px">Something Wrong: </font>服务器端异常</p>
+            <p class="kt15"><font class="comic text-error"  style="font-size:15px">Offline：</font>离线状态，需要开启机器的<font class="comic"  style="font-size:15px">STAF</font></p>
+
+            </div>
+             <div class="span11">
+             <p class="kt15">需要添加机器可以点击<%=link_to '这里', new_remote_machine_path%></p>
+            </div>
+    </div>
+</div>
+<br/>
+
+<div class="container">
+    <div class="thumbnail" style="padding-left:0">
+<table class="table">
+  <tr style="font-size:16px">
+    <th>远程机器地址</th>
+    <th>冒烟测试脚本地址</th>
+    <th>功能测试脚本地址</th>
+    <th>当前状态</th>
+  </tr>
+
+
+<% status_hash = {0=>"Online Free", 1=>"HTTP Running",2=>"Function Running",3=>"Offline", 4=>"Unchecked",5=>"Something Wrong!"}%>
+<% status_color = {0 => "text-info", 1=>"text-warning", 2=>"text-warning",3=>"text-error", 4=>"text-error", 5=>"text-error"}%>
+
+<% @remote_machines.each do |remote_machine| %>
+  <tr class="cm15">
+    <td><%= best_in_place remote_machine, :ipaddress %><%=link_to ' (delete)',remote_machine_path(remote_machine),:method=>:delete, data:{confirm: 'Are you sure?'}%></td>
+    <td><%= best_in_place remote_machine, :smokescriptpath %></td>
+    <td><%= best_in_place remote_machine, :funcscriptpath %></td>
+    <td class="<%= status_color[remote_machine.comstatus]%>"><%= status_hash[remote_machine.comstatus] %>
+        <%if  remote_machine.comstatus == 0 or remote_machine.comstatus == 4 or remote_machine.comstatus == 3 or remote_machine.comstatus == 5%>
+                <%= link_to '(检查状态)', remote_machine_check_path(remote_machine), :style=>"font-size:15px;font-family:Kaiti"%>
+        <%end%>
+    </td>
+  </tr>
+<% end %>
+</table>
+</div>
+</div>
+<br />
+
+

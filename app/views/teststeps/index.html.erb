@@ -1,0 +1,39 @@
+<h1>Listing teststeps</h1>
+
+<table>
+  <tr>
+    <th>Testcase</th>
+    <th>Step</th>
+    <th>Description</th>
+    <th>Step method</th>
+    <th>Obj name</th>
+    <th>Call method</th>
+    <th>Input</th>
+    <th>Expect</th>
+    <th>Run</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @teststeps.each do |teststep| %>
+  <tr>
+    <td><%= teststep.testcase_id %></td>
+    <td><%= teststep.step %></td>
+    <td><%= teststep.description %></td>
+    <td><%= teststep.step_method %></td>
+    <td><%= teststep.obj_name %></td>
+    <td><%= teststep.call_method %></td>
+    <td><%= teststep.input %></td>
+    <td><%= teststep.expect %></td>
+    <td><%= teststep.run %></td>
+    <td><%= link_to 'Show', teststep %></td>
+    <td><%= link_to 'Edit', edit_teststep_path(teststep) %></td>
+    <td><%= link_to 'Destroy', teststep, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Teststep', new_teststep_path %>

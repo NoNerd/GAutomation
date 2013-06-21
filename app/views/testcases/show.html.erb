@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @testcase.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @testcase.description %>
+</p>
+
+<p>
+  <b>Browser:</b>
+  <%= @testcase.browser %>
+</p>
+
+<p>
+  <b>Run:</b>
+  <%= @testcase.run %>
+</p>
+
+<p>
+  <b>Capture:</b>
+  <%= @testcase.capture %>
+</p>
+
+<p>
+  <b>Task ids:</b>
+  <%= @testcase.task_ids %>
+</p>
+
+
+<%= link_to 'Edit', edit_testcase_path(@testcase) %> |
+<%= link_to 'Back', testcases_path %>

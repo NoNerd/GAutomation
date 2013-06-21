@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  http_automation_id: 
+  actual: MyString
+  result: MyString
+
+two:
+  http_automation_id: 
+  actual: MyString
+  result: MyString

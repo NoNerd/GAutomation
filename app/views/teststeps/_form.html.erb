@@ -1,0 +1,53 @@
+<%= form_for(@teststep) do |f| %>
+  <% if @teststep.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@teststep.errors.count, "error") %> prohibited this teststep from being saved:</h2>
+
+      <ul>
+      <% @teststep.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :testcase_id %><br />
+    <%= f.number_field :testcase_id %>
+  </div>
+  <div class="field">
+    <%= f.label :step %><br />
+    <%= f.number_field :step %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :step_method %><br />
+    <%= f.text_field :step_method %>
+  </div>
+  <div class="field">
+    <%= f.label :obj_name %><br />
+    <%= f.text_field :obj_name %>
+  </div>
+  <div class="field">
+    <%= f.label :call_method %><br />
+    <%= f.text_field :call_method %>
+  </div>
+  <div class="field">
+    <%= f.label :input %><br />
+    <%= f.text_field :input %>
+  </div>
+  <div class="field">
+    <%= f.label :expect %><br />
+    <%= f.text_field :expect %>
+  </div>
+  <div class="field">
+    <%= f.label :run %><br />
+    <%= f.number_field :run %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

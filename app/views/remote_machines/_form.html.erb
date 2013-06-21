@@ -1,0 +1,36 @@
+<%= form_for(@remote_machine) do |f| %>
+  <% if @remote_machine.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@remote_machine.errors.count, "error") %> prohibited this remote_machine from being saved:</h2>
+
+      <ul>
+      <% @remote_machine.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="container">  
+  <div class="thumbnail span6 btn-group" style="padding-left: 0;text-align: center">
+        <br/>
+        <p style="font-family:Kaiti; font-size:25px;"><strong>新增远程机器</strong></p><br/>
+        <p class="kt18">机器 <font class="comic"> ip </font>地址  <%= f.text_field :ipaddress %></p>
+        <p class="kt18"><font class="comic">HTTP </font>脚本地址  <%= f.text_field :smokescriptpath %></p>
+        <p class="kt18">功能脚本地址  <%= f.text_field :funcscriptpath %></p>
+        
+        <%= f.submit :class=>"btn", :style=>"font-family:Kaiti; font-size:18px", :value=>"确定"%>
+        <input type="reset" class="btn" value="重置" style="font-family:Kaiti; font-size:18px">
+         <p> <br/></p>
+  </div>
+  <div class="thumbnail span4 offset1 text-info">
+      <br/>
+    <p class="kt18">添加说明</p>
+     <p class="kt15">需要正确填写 <font class="cm15">ip</font>, 会用相对简单的正则进行匹配</p>
+     <p class="kt15">考虑到主机的原因，<font class="cm15">Windows</font>路径分隔符会被转义为 <font class="cm15"> "/" </font></p>
+  </div>
+
+  </div>
+  
+
+<% end %>

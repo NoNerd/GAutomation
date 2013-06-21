@@ -1,0 +1,72 @@
+<%= render 'header'%>
+
+<div class="container">
+    <div class="thumbnail">
+        <br/>
+        <p class="kt18"> 当前关联的测试用例</p>
+    </div>
+</div>
+<br/>
+
+<div class="container">
+    <div class="thumbnail span11">
+        <div class="span11">
+        <br/>
+        <p class="kt18">已完成用例结果汇总：</p>
+        <%pass,fail,error,other=0,0,0,0%>
+                    <% @testcases_result.each do |tc|%>
+                           <% case tc.result%>
+                           <% when 0%>
+                                <% pass = pass + 1%>
+                           <% when 1%>
+                                <% fail = fail+ 1%>
+                           <% when 2%>
+                                <% error = error+1%>
+                           <%else%>
+                                <% other = other+1%>         
+                                <%end%>      
+                    <% end %>
+                    </div>
+         <p >
+             <div class="span2"><font class="cm15 text-success"  >PASS：<%= pass%>  </font></div>
+             <div class="span2"><font class="cm15 text-warning">FAIL：<%= fail%>  </font></div>
+             <div class="span2"><font class="cm15 text-error">ERROR：<%= error%>  </font></div>  
+       </p>           
+    </div>
+</div>
+
+<br/>
+<% result={0=>"PASS", 1=>"FAIL", 2=>"ERROR", nil=> ""}%>
+<%status_situ = {0=>"UnKnown", 1=>"Running", 2=>"Error", 3=>"Finish"}%>
+<% status={0=> "text-warning", 1=>"text-info", 2=>"text-error", 3=>"text-info"}%>
+<%color={0=>"text-success", 1=>"text-warning", 2=>"text-error", nil=>""} %>
+
+<div class="container">
+    <div class="thumbnail" style="padding-left:0">
+        <table class="table">
+            
+        <tr>
+            <th  style="font-family: Comic Sans MS; font-size:16px;">Name</th>
+            <th  style="font-family: Comic Sans MS; font-size:16px;">Status</th>
+            <th style="font-family:Comic Sans MS; font-size:16px">Result</th>
+            <th style="font-family:Comic Sans MS; font-size:16px">Machine</th>
+            <th style="font-family:Comic Sans MS; font-size:16px">FinishTime</th>
+        </tr>
+        
+        <div id="forajax">
+                <%@testcases_result.each do |tr|%>
+                   <tr class="cm15">
+                       <td><%= link_to tr.testcase_id%></td>
+                       <td class="<%= status[tr.status]%>"><%= status_situ[tr.status]%></td>
+                       <td class="<%= color[tr.result]%>"><%= result[tr.result]%></td>
+                       <td><%= tr.ipaddress%></td>
+                       <td><%= tr.updated_at%></td>
+                       <td><%= link_to "Show Steps"%></td>
+                   </tr>
+                <%end%>
+         </div>
+        
+         </table>
+    </div>
+</div>
+<br/>

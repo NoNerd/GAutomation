@@ -22,6 +22,9 @@ end
 
 gem 'jquery-rails'
 gem 'kaminari'
+gem 'irwi'
+gem "RedCloth"
+gem 'best_in_place'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

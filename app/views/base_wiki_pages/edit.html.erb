@@ -1,0 +1,56 @@
+<%= render 'wiki_header'%>
+
+<div class="container">
+    <div class="thumbnail" style="padding-left:0px;">
+
+<h2 style="font-family: Kaiti;text-align:center ">编辑</h2>
+
+<% if params[:preview] %>
+<div class="wiki_content">
+  <%=wiki_content @page.content %>
+</div>
+<% end %>
+
+<%= wiki_page_form do |f| %>
+  <%= f.hidden_field :previous_version_number, :value => f.object.last_version_number %>
+  <%= hidden_field_tag :path, @page.path %>
+ <div class="container">
+      <div class="span8 offset1">
+        <p class="kt18"><strong>显示名称 </strong></p><p><%= f.text_field :title, :style=>"width:100%"%></p>
+       </div>
+</div>
+
+
+<div class="container">
+    <div class="span10 offset1">
+  <p class="kt18">
+      <strong>文本内容</strong>
+      <br />
+      <div class="wysiwyg ui-resizable">
+      <%= f.text_area :content, :id=>'wysiwyg', :style=>"width:100%"%></p></div>
+     </div>
+     </div> 
+   <br/>
+   <div class="container">
+       <div class="span10 offset1">   
+  <p class="kt18"><strong>变更注释(选填)</strong><br/><br /><%= f.text_field :comment , :style=>"width:100%"%></p>
+        </div>
+   </div>
+   
+   <br/>
+   
+   <div class="container">
+   <div class="btn-group offset1">    
+  <input type="submit" name="save" value="<%=wt '保存' %>" class="submit btn "  style="font-family: Kaiti;font-size:18px"/>
+  <input type="submit" name="preview" value="<%=wt '查看旧版本' %>" class="submit btn"  style="font-family: Kaiti;font-size:18px"/>
+  <input type="submit" name="cancel" value="<%=wt '取消' %>" class="submit btn"  style="font-family: Kaiti;font-size:18px"/>
+    </div>
+    </div>
+
+<% end %>
+
+<%= wiki_page_attachments(@page) %>
+
+</div>
+</div>
+<br/>

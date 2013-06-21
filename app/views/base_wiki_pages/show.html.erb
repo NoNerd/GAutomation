@@ -1,0 +1,24 @@
+<%= render 'wiki_header'%>
+
+<div class="container">
+    <div class="thumbnail" style="padding-left: 0px;">
+
+
+<div class="offset1">
+<h2 style="font-family: Kaiti"><%=h @page.title %></h2>
+</div>
+  <br/>
+  <div class="container">
+      <div class="offset1">
+            <%= raw(@page.content)%>
+            <br/>
+            <%= wiki_page_actions%>
+             <p class="kt15">创建时间：<font class="comic" style="font-size:15px"><%= @page.created_at%>  </font>&nbsp;
+            最后更新时间：<font class="comic"  style="font-size:15px"><%= @page.updated_at%></font></p>
+            <br/>
+        </div>
+   </div>
+   
+</div>
+</div>
+<br/>

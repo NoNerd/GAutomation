@@ -1,0 +1,2 @@
+module RemoteIpControllerHelper
+end

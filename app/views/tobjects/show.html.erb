@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Syn name:</b>
+  <%= @tobject.syn_name %>
+</p>
+
+<p>
+  <b>Label types:</b>
+  <%= @tobject.label_types %>
+</p>
+
+<p>
+  <b>Label attributes:</b>
+  <%= @tobject.label_attributes %>
+</p>
+
+<p>
+  <b>Attribute values:</b>
+  <%= @tobject.attribute_values %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @tobject.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_tobject_path(@tobject) %> |
+<%= link_to 'Back', tobjects_path %>

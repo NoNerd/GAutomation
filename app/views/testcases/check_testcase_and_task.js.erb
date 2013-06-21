@@ -1,0 +1,16 @@
+str = ""
+
+<% @tc_tasks.each do |tc_task|%>
+   <% if tc_task == @tc_tasks.last %>
+             str = str + <%= tc_task.task_id %>
+   <%else%>
+              str = str + <%= tc_task.task_id %>+ ","
+   <% end %> 
+<% end %>
+
+str = str + "(Check)"
+
+position = "#tcandtk"
+position = position + <%= @tcid%>
+
+$(position).html(str);

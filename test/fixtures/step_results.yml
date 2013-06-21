@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  teststep_id: 1
+  actual: MyString
+  result: 1
+  ipaddress: MyString
+  screenshot_path: MyString
+  counter: 1
+
+two:
+  teststep_id: 1
+  actual: MyString
+  result: 1
+  ipaddress: MyString
+  screenshot_path: MyString
+  counter: 1

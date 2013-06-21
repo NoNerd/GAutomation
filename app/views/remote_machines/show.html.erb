@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Ipaddress:</b>
+  <%= @remote_machine.ipaddress %>
+</p>
+
+<p>
+  <b>Smokescriptpath:</b>
+  <%= @remote_machine.smokescriptpath %>
+</p>
+
+<p>
+  <b>Funcscriptpath:</b>
+  <%= @remote_machine.funcscriptpath %>
+</p>
+
+
+
+
+<%= link_to 'Edit', edit_remote_machine_path(@remote_machine) %> |
+<%= link_to 'Back', remote_machines_path %>

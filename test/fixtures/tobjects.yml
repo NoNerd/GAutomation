@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  syn_name: MyString
+  label_types: MyString
+  label_attributes: MyString
+  attribute_values: MyString
+  description: MyString
+
+two:
+  syn_name: MyString
+  label_types: MyString
+  label_attributes: MyString
+  attribute_values: MyString
+  description: MyString

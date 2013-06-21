@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  description: MyString
+  browser: MyString
+  run: 1
+  capture: 1
+  task_ids: MyString
+
+two:
+  name: MyString
+  description: MyString
+  browser: MyString
+  run: 1
+  capture: 1
+  task_ids: MyString

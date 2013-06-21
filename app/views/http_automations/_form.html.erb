@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="thumbnail span6" style="padding-left:0; text-align:center">
+    <br/>
+    <p class="kt18"><strong>添加 <font class="comic"> http </font> 测试步骤</strong></p>
+        
+<br/>
+
+<%= form_for(@http_automation) do |f| %>
+
+    <p class="kt18"><font class="comic">http </font>类型：<%= f.text_field :hre_type%></p>
+    <p class="kt18">步骤描述：<%= f.text_field :description%></p>
+    <p class="kt18">依赖用例：<%= f.text_field :base_id%></p>
+    <p class="kt18">预期结果：<%= f.text_field :expect%></p>
+    <p class="kt18">关联<font class="comic"> host</font>: <%= f.text_field :host_id%></p>
+    <p class="kt18">所处环境：<%= f.text_field :env%></p>
+    <p class="kt18">完整<font class="comic">url</font>: <%= f.text_field :url_path%></p>
+  <div class="actions">
+    <%= f.submit :class=>"btn", :value=>"确认添加", :style=>"font-family: Kaiti"%>
+  </div>
+<% end %>
+</div>
+
+<div class="thumbnail offset1 span4 text-info">
+    <br/>
+    <p class="kt18">说明信息:</p>
+    <p class="kt15">预期结果针对<font class="cm15">json </font>返回值</p>
+    <p class="kt15">全部文本框内容都可以在<font class="cm15">http</font>测试页修改(建议)</p>
+    <p class="kt15">关联用<font class="cm15"> '>' </font>分割</p>
+</div>
+</div>

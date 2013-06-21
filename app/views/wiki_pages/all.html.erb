@@ -1,0 +1,27 @@
+<%= render 'wiki_header'%>
+
+<div class="container">
+    <div class="thumbnail" style="padding-left:0px">
+
+<h2 style="font-family: Kaiti;text-align:center ">全部主题</h2>
+
+<div class="container">
+    <div class="offset1">
+    <%= link_to '新增条目', wiki_page_new_path,:style=>"font-family: Kaiti;font-size:17px",:class=>"btn"%>
+    <br/>
+<br/>
+<ul>
+  <% wiki_paginate @pages do -%>
+    <% @pages.each do |page| -%>
+      
+      <li><%= link_to page.title, wiki_page_path( page ),:style=>"font-family:Kaiti; font-size:20px"%></li>
+    <% end -%>
+  <% end -%>
+</ul>
+
+    </div>
+</div>
+</div>
+</div>
+
+<br/>

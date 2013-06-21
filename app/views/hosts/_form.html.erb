@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="thumbnail">
+            <br/>
+            <p class="kt18"><font class="comic">host</font>一般为<font class="comic">http</font>请求的域名部分，如<font class="comic">http://www.autogome.com/xxx</font>中的<font class="comic">"www.autogome.com"</font></p>
+    </div>
+</div>
+<br/>
+
+
+<div class="container">
+    <div class="thumbnail offset1 span9">
+<%= form_for(@host) do |f| %>
+<br/>
+    <p class="kt18">
+        <font class="comic">host</font>&nbsp;
+        <%= f.text_field :url%>&nbsp;
+            <input type="submit" class="btn btn-primary" value="提交"/>
+    </p>
+
+<% end %>
+
+</div>
+</div>

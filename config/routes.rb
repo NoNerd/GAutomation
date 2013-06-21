@@ -1,4 +1,47 @@
 GAutomation::Application.routes.draw do
+
+  resources :teststeps
+
+
+  resources :tobjects
+
+
+  resources :testcases do
+        get 'check_testcase_and_task' , :action=>"check_testcase_and_task"
+        get 'update_testcase_tasks', :action=>"update_testcase_tasks", :as=>"update_tt"
+        post 'add_relative_tasks',:action=>"add_relative_tasks",:as=>"add_relative_tasks"
+        get 'show_steps',:action=>"show_steps",:as=>"show_steps"
+  end
+
+
+  resources :tasks do
+          get 'get_relative_testcases', :action=>"get_relative_testcases",:as=>"get_relative_testcases"
+          match 'run', :action=>"run",:as=>"run"
+          match 'reset', :action=>"reset",:as=>"reset"
+          match 'current_result/:counter', :action=>"current_result",:as=>"current_result"
+  end
+
+
+  get "introduction/usinghttp"
+
+  get "introduction/usingfunc"
+
+  get "http_result/show(/:id)" => "http_result#show"
+  
+  get "http_result/delete_all" => "http_result#clear_all"
+  
+  match "http_result/run_http" => "http_result#run_http"
+
+  resources :http_automations
+
+  resources :hosts
+
+  resources :remote_machines  do
+          get "check",  :action =>"check_machine_situ"
+  end
+
+  wiki_root '/wiki'
+
   get "equip/uploadify"
 
   get "user_behave/login"
@@ -8,6 +51,7 @@ GAutomation::Application.routes.draw do
   get "index/index"
 
   get "index/introduction"
+  
 
   resources :users
 
@@ -16,6 +60,9 @@ GAutomation::Application.routes.draw do
  post "user_behave/login" => "user_behave#try_login", :as=>"login"
  
  get "user_behave/logout" => "user_behave#logout", :as => "logout"
+ 
+ get "equip/show" => "equip#show"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

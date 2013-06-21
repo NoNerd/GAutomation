@@ -1,0 +1,38 @@
+<%=render "wiki_header"%>
+
+<div class="container">
+    <div class="thumbnail" style="padding-left:0px;">
+
+<h2 style="font-family:Kaiti;text-align:center">新增</h1>
+
+<%= wiki_page_form do |f| %>
+  <%= f.hidden_field :previous_version_number, :value => f.object.last_version_number %>
+
+  <div class="container">
+        <div class="span8 offset1">
+            <p class="kt18"><strong>名称</strong></p><p><%= f.text_field :title,:style=>"width:100%" %></p>
+        </div>
+  </div>
+  
+  <div class="container">
+      <div class="span10 offset1">
+     <p class="kt18"><strong>文本内容</strong><br />
+         <div class="wysiwyg">
+         <%= f.text_area :content, :id=>'wysiwyg', :style=>'width:100%' %></p>
+        </div>
+    </div>
+  </div>
+  <% @page.path = create_wiki_path%>
+  <%= f.hidden_field :comment, :value => 'First Revision'%>
+  <%= hidden_field_tag :path, @page.path %>
+<br/>
+<div class="container">
+    <div class="btn-group offset1">
+  <input type="submit" value="<%=wt '创建' %>" class="submit btn"   style="font-family: Kaiti;font-size:18px"/>
+    </div>
+    </div>
+    <% end %>
+   </div>
+</div>
+
+<br/>

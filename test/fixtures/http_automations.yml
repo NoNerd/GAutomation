@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  hre_type: MyString
+  description: MyString
+  base_id: 1
+  expect: MyString
+  host_id: 1
+  env: 1
+  url_path: MyString
+
+two:
+  hre_type: MyString
+  description: MyString
+  base_id: 1
+  expect: MyString
+  host_id: 1
+  env: 1
+  url_path: MyString

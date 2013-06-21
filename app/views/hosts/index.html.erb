@@ -1,0 +1,51 @@
+<%= render "header"%>
+
+<%  if  notice%>
+        <div class="container">
+        <div class="alert alert-info" style="font-family: Comic Sans MS; font-size: 18px;">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                 <%= notice%>
+        </div>
+        </div>
+<%end%>
+
+
+<div class="container">
+    <div class="thumbnail">
+            <br/>
+            <p class="kt18"><font class="comic">host</font>一般为<font class="comic">http</font>请求的域名部分，如<font class="comic">http://www.autogome.com/xxx</font>中的<font class="comic">"www.autogome.com"</font></p>
+            <p class="kt18">添加<font class="comic">host</font>,点击<%= link_to '这里', new_host_path%></p>
+    </div>
+</div>
+<br/>
+
+<div class="container">
+    <div class="thumbnail span10 offset1" style="padding-left:0px;">
+        <br/>
+
+<% if @hosts.length == 0 %>
+    <p class="kt18">还未设置任何相关<font class="comic">host</font></p>
+    <br/>
+<% else%>
+<table class="table">
+  <tr>
+    <th style="font-family: Comic Sans MS;font-size:18px;">ID</th>
+    <th  style="font-family: Comic Sans MS;font-size:18px;">URL</th>
+    <th></th>
+   
+  </tr>
+
+<% @hosts.each do |host| %>
+  <tr class="cm15"> 
+      <td><%= host.id%></td>
+    <td><%=best_in_place host,:url %></td>
+    <td><%= link_to 'Destroy', host, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+<br />
+</div>
+</div>
+</br/>

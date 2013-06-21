@@ -1,0 +1,47 @@
+<%= render 'header'%>
+
+<div class="container">
+    <div class="thumbnail">
+            <br/>
+             <p class="kt18"> 添加新任务可以点击<%= link_to "这里", new_task_path%></p>
+    </div>
+</div>
+<br/ >
+<div class="container">
+    <div class="thumbnail">
+        <br/>
+        <div id="tkandtc"><p class="kt15">未选择任何任务</p></div>
+    </div>
+</div>
+<br/>
+
+
+<div class="container">
+    <div class="thumbnail" style="padding-left:0">
+<table class="table">
+  <tr>
+    <th style="font-family: Comic Sans MS;font-size:16px;">Description</th>
+    <th style="font-family: Comic Sans MS;font-size:16px;">Counter</th>
+    <th  style="font-family: Comic Sans MS;font-size:16px;">Machine</th>
+    <th  style="font-family: Comic Sans MS;font-size:16px; text-align: center"  colspan="3">Action</th>
+  </tr>
+
+
+<% @tasks.each do |task| %>
+<%= form_tag(task_run_path(task)) do %>
+  <tr class="cm15">
+    <td  style="font-family:Kaiti"><%=best_in_place task,:description ,:html_attrs=>{ :style=>"width:60px;font-family: Kaiti"}%></td>
+    <td><%= best_in_place task,:run_counter ,:html_attrs=>{ :style=>"width:15px;font-family: Kaiti"}%><%= link_to '(Reset)', task_reset_path(task), data: {confirm:'Are you sure?'}%></td>
+    <td><%= select_tag "remote_machine", options_from_collection_for_select(@remote_machines,"id","ipaddress"),:style=>"font-family:Comic Sans MS"%> </td>
+    <td><%= link_to 'Show Relative TCs',task_get_relative_testcases_path(task),:remote=>true%></td>
+    <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><input type="submit" value="运行任务" style="font-family:Kaiti" class="btn btn-primary"/></td>
+ <%end%>
+  </tr>
+<% end %>
+</table>
+
+
+    </div>
+</div>
+<br />

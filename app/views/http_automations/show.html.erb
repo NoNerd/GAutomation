@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Hre type:</b>
+  <%= @http_automation.hre_type %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @http_automation.description %>
+</p>
+
+<p>
+  <b>Base:</b>
+  <%= @http_automation.base_id %>
+</p>
+
+<p>
+  <b>Expect:</b>
+  <%= @http_automation.expect %>
+</p>
+
+<p>
+  <b>Host:</b>
+  <%= @http_automation.host_id %>
+</p>
+
+<p>
+  <b>Env:</b>
+  <%= @http_automation.env %>
+</p>
+
+<p>
+  <b>Url path:</b>
+  <%= @http_automation.url_path %>
+</p>
+
+
+<%= link_to 'Edit', edit_http_automation_path(@http_automation) %> |
+<%= link_to 'Back', http_automations_path %>

@@ -1,0 +1,37 @@
+<%= form_for(@tobject) do |f| %>
+  <% if @tobject.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tobject.errors.count, "error") %> prohibited this tobject from being saved:</h2>
+
+      <ul>
+      <% @tobject.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :syn_name %><br />
+    <%= f.text_field :syn_name %>
+  </div>
+  <div class="field">
+    <%= f.label :label_types %><br />
+    <%= f.text_field :label_types %>
+  </div>
+  <div class="field">
+    <%= f.label :label_attributes %><br />
+    <%= f.text_field :label_attributes %>
+  </div>
+  <div class="field">
+    <%= f.label :attribute_values %><br />
+    <%= f.text_field :attribute_values %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
