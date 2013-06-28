@@ -29,3 +29,12 @@ $('#wysiwyg').wysiwyg({
 
 $('.best_in_place').best_in_place();
 
+
+$(document).ready(function(){
+	refreshTable();
+});
+
+function refreshTable(){
+	$('#ajax').load('/ajax_result',function(){setTimeout(refreshTable, 7000)});
+	$('#http_result_ajax').load('/show_ajax_result',function(){setTimeout(refreshTable,3000)});
+}

@@ -1,0 +1,67 @@
+<%= render 'header'%>
+
+
+<div class="container">
+    <div class="thumbnail">
+        <br/>
+        <p class="kt18 text-info">全部任务列表</p>
+    </div>
+</div>
+<br/>
+
+<div class="container">
+    <div class="thumbnail" style="padding-left:0px">
+            <table class="table">
+                <tr>
+                    <th style="font-size:16px">编号</th>
+                    <th  style="font-size:16px">运行次数</th>
+                    <th style="font-size:16px">最后运行时间</th>
+                    <th></th>
+                </tr>
+                
+                <% if @tasks%>
+                <% @tasks.each_with_index do |task,index|%>
+                        <tr class="cm15">
+                                <td><%= index+1%></td>
+                                <td><%= task.run_counter%></td>
+                                <td><%= task.updated_at%></td>
+                                <td><%=link_to "Show", show_task_result_path(task)%></td>
+                        </tr>
+                <%end%>                
+                <%end%>
+            </table>
+    </div>
+</div>
+<br/>
+
+<div class="container">
+    <div class="thumbnail">
+                   <br/>
+                <p class="kt18 text-info">全部测试用例</p>
+    </div>
+ </div>
+<br/>
+
+<div class="container">
+    <div class="thumbnail" style="padding:0px">
+            <table class="table">
+                <tr>
+                    <th style="font-size:16px">用例编号</th>
+                   <th style="font-size:16px">描述信息</th>
+                   <th style="font-size:16px">操作</th>
+                </tr>
+                
+                <% if @testcases%>
+                <% @testcases.each_with_index do |tc,id|%>
+                        <tr class="cm15">
+                            <td><%= link_to "#{id+1}"%></td>
+                            <td style="font-family: Kaiti"><%= tc.description%></td>
+                            <td><%= link_to 'Show',show_tc_result_path(tc)%></td>
+                        </tr>
+                <%end%>
+                <%end%>
+            </table>    
+    </div>
+</div>
+
+<br/>

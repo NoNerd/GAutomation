@@ -26,10 +26,11 @@
                                         <a class="dropdown-toggle" data-toggle="dropdown" id="dLabel" role="button" data-target="#" href="">功能测试<b class="caret"></b></a>
                                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                             <li>
-                                                <%= link_to '任务管理' , tasks_path%>
-                                                <%= link_to '用例管理', testcases_path%>
                                                 <%= link_to '测试机器管理', remote_machines_path%>
                                                 <%= link_to '测试对象管理', tobjects_path%>
+                                                <%= link_to '任务管理' , tasks_path%>
+                                                <%= link_to '用例管理', testcases_path%>
+                                                <%= link_to '结果展示', result_show_task_path%>
                                             </li>
                                         </ul>
                                     </li>
@@ -38,7 +39,9 @@
                                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel2">
                                                 <li><%= link_to 'Host', hosts_path, :style=>"font-family: Comic Sans MS;"%></li>
                                                 <li><%= link_to 'HTTP', http_automations_path, :style=>"font-family:Comic Sans MS;"%></li>
-                                                <li><%= link_to 'Result','/http_result/show',:style=>"font-family:Comic Sans MS;"%></li>
+                                                <li><%= link_to 'HTTP Result','/http_result/show',:style=>"font-family:Comic Sans MS;"%></li>
+                                                <li><%= link_to 'Performance',url_performances_path, :style=>"font-family:Comic Sans MS;"%></li>
+                                                <li><%= link_to "Performance Result", url_performance_result_path, :style=>"font-family:Comic Sans MS;"%></li>
                                          </ul>
                                         
                                     </li>

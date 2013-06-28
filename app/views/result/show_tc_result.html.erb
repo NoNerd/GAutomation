@@ -1,0 +1,47 @@
+<%= render 'header'%>
+
+<div class="container">
+    <div class="thumbnail">
+                   <br/>
+                <p class="kt18">用例：<strong class=" text-info"><%= @testcase.description%></strong> 全部结果列表</p>
+    </div>
+ </div>
+<br/>
+
+<%color={0=>"text-success", 1=>"text-warning", 2=>"text-error", nil=>""} %>
+<% result={0=>"PASS", 1=>"FAIL", 2=>"ERROR", nil=> ""}%>
+<% status={0=>"Unkown", 1=>"Running", 2=>"Exception", 3=>"Finished"}%>
+
+</br>
+
+<div class="container">
+    <div class="thumbnail" style="padding:0px">
+            <table class="table">
+                <tr>
+                    <th style="font-size:16px">用例编号</th>
+                   <th style="font-size:16px">执行次</th>
+                   <th style="font-size:16px">状态</th>
+                   <th style="font-size:16px">机器</th>
+                   <th style="font-size:16px">时间</th>
+                   <th style="font-size:16px">结果</th>
+                    <th></th>
+                </tr>
+                
+                <% if @step_results%>
+                <% @step_results.each_with_index do |tc,id|%>
+                        <tr class="cm15">
+                            <td><%= id+1%></td>
+                            <td><%= tc.counter%></td>
+                            <td><%= status[tc.status]%></td>
+                            <td><%=tc.ipaddress%></td>
+                            <td><%= tc.updated_at%></td>
+                            <td class="<%= color[tc.result]%>"><%= result[tc.result]%></td>
+                            <td><%= link_to 'Detail',  task_show_current_steps_path(tc.task_id,tc.counter,tc.id)%></td>
+                        </tr>
+                <%end%>
+                <%end%>
+            </table>    
+    </div>
+</div>
+
+<br/>

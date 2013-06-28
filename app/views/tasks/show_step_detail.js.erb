@@ -1,0 +1,29 @@
+
+
+<% if @step%>
+
+$('#show_step_<%=@step.id%>').html('<%= link_to "Close Step", close_step_detail_path(@step), :remote=>true %>')
+
+str ="";
+
+str = str + '<td colspan="6"  class="text-info"  style="line-height: 180%"><p><div class="span5"> <font style="font-family: Kaiti;font-size:16px">描述信息：<%= @step.description%></font> </div>';
+
+str = str + '<div class="span4 offset1"><font style="font-family: Kaiti;font-size:16px">执行操作：</font><font class="cm15"> <%= @step.step_method%></font></div>'
+
+str = str + '<div class="span5"><font style="font-family: Kaiti;font-size:16px">元素名称：</font><font class="cm15"><%= @step.obj_name%></font></div>'
+
+str = str + '<div class="span4 offset1"><font style= "font-family:Kaiti;font-size:16px">执行方法：</font><font class="cm15"><%= @step.call_method%></font></div>'
+
+str = str + '<div class="span5"><font style="font-family: Kaiti;font-size:16px">输入：</font><font class="cm15"><%= @step.input%></font></div>'
+
+str = str + '<div class="span4 offset1"><font style= "font-family:Kaiti;font-size:16px">输出：</font><font class="cm15"><%= @step.expect%></font></div>'
+
+
+str = str + "</p></td>";
+
+
+
+$('#info_detail<%= @step.id%>').html(str);
+
+$('#info_detail<%= @step.id%>').css({'background-color':'rgb(240, 240, 240)'})
+<%end%>

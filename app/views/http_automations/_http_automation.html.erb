@@ -1,0 +1,14 @@
+  <tr class="cm15">
+      <td><%= best_in_place  http_automation, :id%></td>
+    <td><%= best_in_place  http_automation,:hre_type ,:html_attrs=>{ :style=>"width:20px;"}%></td>
+    <td style="font-family: Kaiti; font-size:15px"><%=best_in_place  http_automation,:description ,:html_attrs=>{ :style=>"width:30px;font-family: Kaiti"}%></td>
+    <td><%=best_in_place http_automation,:base_id ,:html_attrs=>{ :style=>"width:10px;font-family: Comic Sans MS"}%></td>
+    <td><%=best_in_place http_automation,:expect , :display_with=>lambda{|v| v.gsub(/(.{20})/,"\\1<br/>").html_safe},:html_attrs=>{ :style=>"width:30px;font-family: Comic Sans MS"}%></td>
+    <td>
+        <%=best_in_place http_automation,:host_id ,:html_attrs=>{ :style=>"width:40px;"}%>
+    </td>
+    <td><%=best_in_place http_automation,:env ,:html_attrs=>{ :style=>"width:10px;"}%></td>
+    <td><%= best_in_place  http_automation,:url_path, :display_with=>lambda{|v| v.gsub(/(.{25})/,"\\1<br/>").html_safe} ,:html_attrs=>{ :style=>"width:105px;font-family: Comic Sans MS"}%></td>
+    <td><%= link_to "Destroy", http_automation, method: :delete, data: { confirm: "Are you sure?" } %></td>
+    
+  </tr>

@@ -1,0 +1,52 @@
+<%= render 'result_header'%>
+
+<% situ_env = {"ff"=>"FireFox", "chrome"=>"Chrome", "ie"=>"Internet Explorer"}%>
+
+<%color={0=>"text-success", 1=>"text-warning", 2=>"text-error", nil=>""} %>
+<% result={0=>"PASS", 1=>"FAIL", 2=>"ERROR", nil=> ""}%>
+
+<div class="container">
+    <div class="thumbnail">
+                <br/>
+                <p class="kt18">当前运行任务名称：<%= @task.description%></p>
+                <p class="kt18">当前运行步骤名称：<font class="cm15"><%= link_to @testcase.name, testcase_show_steps_path(@testcase)%></font><font style="font-size:15px;color:gray">(点击查看用例步骤详情)</font></p>
+                <p class="kt18">步骤描述信息：<%= @testcase.description%></p>
+                <p class="kt18">运行环境：<font class="cm15"><%= situ_env[@testcase.browser]%></font></p>
+    </div>
+</div>
+<br/>
+
+<div class="container">
+    <div class="thumbnail">
+            <div id="bcd"></div>
+        </div>
+        </div>
+
+
+<div class="container">
+    <div class="thumbnail" style="padding-left:0">
+            <table class="table">
+                        <tr>
+                            <td style="font-family:Comic Sans MS; font-size:16px">ID</td>
+                            <td style="font-family:Comic Sans MS; font-size:16px">Machine</td>
+                            <td style="font-family:Comic Sans MS;font-size:16px">Result</td>
+                            <td style="font-family:Comic Sans MS;font-size:16px">Actual</td>
+                            <td style="font-family:Comic Sans MS;font-size:16px">ImagePath</td>
+                        </tr>
+                        <%if @steps_result.length > 0%>
+                        <%@steps_result.each_with_index do |sr,index|%>
+                                <tr class="cm15">
+                                        <td><%= index+1%></td>
+                                        <td><%= sr.ipaddress%></td>
+                                        <td class="<%= color[sr.result]%>"><%= result[sr.result]%></td>
+                                        <td><%= sr.actual.gsub(/(.{30})/,"\\1<br/>").html_safe %></td>
+                                        <td><%= sr.screenshot_path.gsub(/(.{30})/,"\\1<br/>").html_safe%></td>
+                                        <td id="show_step_<%= sr.teststep_id%>"><%= link_to "Show Step", show_step_detail_path(sr.teststep_id) ,:remote=>true%></td>
+                                </tr>
+                                <tr id="info_detail<%= sr.teststep_id%>"></tr>
+                        <%end%>
+                        <%end%>
+            </table>
+    </div>
+</div>
+<br/>

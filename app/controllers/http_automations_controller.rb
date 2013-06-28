@@ -2,7 +2,7 @@ class HttpAutomationsController < ApplicationController
   # GET /http_automations
   # GET /http_automations.json
   def index
-    @http_automations = HttpAutomation.page(params[:page]).per(30)
+    @http_automations = HttpAutomation.all
     @hosts = Host.all
               @remote_machines = RemoteMachine.where(["comstatus = ?",0])
     respond_to do |format|
@@ -83,4 +83,26 @@ class HttpAutomationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def search_http
+          host_id = params[:host_id].to_i
+          env_id = params[:env_id].gsub(/\((.*)\)/, "").to_i
+          if host_id == 0
+                  if env_id == 0
+                          @http_automations = HttpAutomation.all
+                   else
+                           @http_automations = HttpAutomation.where(["env= ? ",env_id])       
+                  end
+         else
+                if env_id == 0
+                        @http_automations = HttpAutomation.where(["host_id = ?", host_id])
+                else
+                        @http_automations = HttpAutomation.where(["env= ? and host_id = ?", env_id, host_id])
+                end                 
+          end
+          respond_to do |format|
+                  format.js
+          end
+  end
+  
 end

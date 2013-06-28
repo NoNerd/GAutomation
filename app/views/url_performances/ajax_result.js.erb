@@ -1,0 +1,12 @@
+<% if @results.length != 0%>
+<script>str = ""</script>
+
+<% color = {"running..."=>"text-warning", "finished"=>"text-success", "error"=>"text-error"}%>
+<%@results.each do |rt|%>
+       <script> str = str + '<tr class="cm15"><td><%= rt.url.gsub(/(.{40})/,"\\1<br/>").html_safe%></td><td class="text-info"><%= rt.browser%></td><td class="<%= color[rt.info]%>"><%= rt.info%></td><td><%= rt.response_time%></td><td><%= rt.created_at%></td></tr>'</script>
+<%end%>
+
+<script>$('#ajax').html(str)</script>
+<%else%>
+<script>$('#ajax').html("<tr class='cm15'><td colspan='5'>No Record........</td></tr>")</script>
+<%end%>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  runflag: 
+  url: MyString
+  browser: MyString
+
+two:
+  runflag: 
+  url: MyString
+  browser: MyString

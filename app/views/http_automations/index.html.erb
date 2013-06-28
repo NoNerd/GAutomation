@@ -25,17 +25,30 @@
 <br/>
 
 <div class="container">
-    <div class="thumbnail">
+    <div class="thumbnail span6">
             <br/>
             <%= form_tag(http_result_run_http_path)  do %>
             <p class="kt18">选择执行条件：</p>
             <p class="kt18">
-                机器：<%= select_tag "remote_machine", options_from_collection_for_select(@remote_machines,"id","ipaddress"),:style=>"font-family:Comic Sans MS"%> 
+                机器：<%= select_tag "remote_machine", options_from_collection_for_select(@remote_machines,"id","ipaddress"),:style=>"font-family:Comic Sans MS"%> <br/>
                 环境:  <%= select_tag "cur_env", "<option>0(all)</option><option>1(gomeprelive)</option><option>2(atgsit)</option><option>3(atguat)</option><option>4(others)</option>".html_safe,:style=>"font-family:Comic Sans MS"%> 
             </p>
             <p><input type="submit" style="font-family:Kaiti;font-size:15px" class="btn btn-primary" value="执行操作"/></p>
             <% end %>
     </div>
+    
+    <div class="thumbnail span5">
+             <%= form_tag(search_http_path, :remote=>true)  do%>
+             <br/>
+             <p class="kt18">选择搜索条件</p>
+                 <p class="kt18">    
+                     环境:  <%= select_tag "env_id", "<option>0(all)</option><option>1(gomeprelive)</option><option>2(atgsit)</option><option>3(atguat)</option><option>4(others)</option>".html_safe,:style=>"font-family:Comic Sans MS"%>
+                     <br/> 
+                    <font class="comic">Host:  </font><%= select_tag "host_id",options_from_collection_for_select(@hosts, "id", "url"), :style=>"font-family:Comic Sans MS", prompt: "From All"%>
+                </p>
+                <p><input type="submit" style="font-family:Kaiti;font-size:15px" class="btn btn-primary" value="搜索"/></p>
+             <%end%>
+   </div>
 </div>
 
 
@@ -56,22 +69,11 @@
 
   </tr>
 
-<% @http_automations.each do |http_automation| %>
-  <tr class="cm15">
-      <td><%= best_in_place  http_automation, :id%></td>
-    <td><%= best_in_place  http_automation,:hre_type ,:html_attrs=>{ :style=>"width:20px;"}%></td>
-    <td style="font-family: Kaiti; font-size:15px"><%=best_in_place  http_automation,:description ,:html_attrs=>{ :style=>"width:30px;font-family: Kaiti"}%></td>
-    <td><%=best_in_place http_automation,:base_id ,:html_attrs=>{ :style=>"width:10px;font-family: Comic Sans MS"}%></td>
-    <td><%=best_in_place http_automation,:expect , :display_with=>lambda{|v| v.gsub(/(.{20})/,"\\1<br/>").html_safe},:html_attrs=>{ :style=>"width:30px;font-family: Comic Sans MS"}%></td>
-    <td><%=best_in_place http_automation,:host_id ,:html_attrs=>{ :style=>"width:10px;"}%></td>
-    <td><%=best_in_place http_automation,:env ,:html_attrs=>{ :style=>"width:10px;"}%></td>
-    <td><%= best_in_place  http_automation,:url_path, :display_with=>lambda{|v| v.gsub(/(.{25})/,"\\1<br/>").html_safe} ,:html_attrs=>{ :style=>"width:30px;font-family: Comic Sans MS"}%></td>
-    <td><%= link_to 'Destroy', http_automation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+    <tbody id="search_http">
+      <%= render partial: 'http_automation', collection: @http_automations%>
+   </tbody>
 </table>
 <br/>
-    <div class="span6 offset4" style="text-align: right"><%= paginate @http_automations %></div>
     </div>
 
 </div>

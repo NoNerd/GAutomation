@@ -31,7 +31,8 @@
              <div class="span2"><font class="cm15 text-success"  >PASS：<%= pass%>  </font></div>
              <div class="span2"><font class="cm15 text-warning">FAIL：<%= fail%>  </font></div>
              <div class="span2"><font class="cm15 text-error">ERROR：<%= error%>  </font></div>  
-       </p>           
+       </p>  
+         
     </div>
 </div>
 
@@ -53,7 +54,7 @@
             <th style="font-family:Comic Sans MS; font-size:16px">FinishTime</th>
         </tr>
         
-        <div id="forajax">
+
                 <%@testcases_result.each do |tr|%>
                    <tr class="cm15">
                        <td><%= link_to tr.testcase_id%></td>
@@ -61,10 +62,10 @@
                        <td class="<%= color[tr.result]%>"><%= result[tr.result]%></td>
                        <td><%= tr.ipaddress%></td>
                        <td><%= tr.updated_at%></td>
-                       <td><%= link_to "Show Steps"%></td>
+                       <td><%= link_to "Show Steps", task_show_current_steps_path(params[:task_id],params[:counter],tr.id)%></td>
                    </tr>
                 <%end%>
-         </div>
+
         
          </table>
     </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130620025707) do
+ActiveRecord::Schema.define(:version => 20130626035350) do
 
   create_table "hosts", :force => true do |t|
     t.string   "url"
@@ -50,13 +50,15 @@ ActiveRecord::Schema.define(:version => 20130620025707) do
 
   create_table "step_results", :force => true do |t|
     t.integer  "teststep_id"
-    t.string   "actual"
+    t.string   "actual",          :limit => 1023
     t.integer  "result"
     t.string   "ipaddress"
     t.string   "screenshot_path"
     t.integer  "counter"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.integer  "task_id"
+    t.integer  "testcase_id"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "tasks", :force => true do |t|
@@ -77,10 +79,11 @@ ActiveRecord::Schema.define(:version => 20130620025707) do
     t.integer  "testcase_id"
     t.integer  "result"
     t.integer  "counter"
-    t.integer  "status"
+    t.integer  "status",      :default => 0
     t.string   "ipaddress"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "task_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "testcases", :force => true do |t|
@@ -115,6 +118,21 @@ ActiveRecord::Schema.define(:version => 20130620025707) do
     t.string   "description"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "url_performances", :force => true do |t|
+    t.integer  "runflag"
+    t.string   "url"
+    t.string   "browser"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "url_results", :force => true do |t|
+    t.string   "url"
+    t.integer  "response_time"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "users", :force => true do |t|

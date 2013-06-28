@@ -8,6 +8,7 @@ class CreateStepResults < ActiveRecord::Migration
       t.string :screenshot_path
       t.integer :counter
       t.integer :task_id
+      t.integer :testcase_id
 
       t.timestamps
     end

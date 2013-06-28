@@ -12,8 +12,6 @@ class HttpResultController < ApplicationController
   end
   
   def run_http
-          
-          
           if params[:remote_machine] != nil
                         machine = RemoteMachine.find(params[:remote_machine])
                         envi = params[:cur_env]
@@ -25,8 +23,13 @@ class HttpResultController < ApplicationController
           else
                   redirect_to '/http_result/show', notice: 'No machine is selected! Go and check the remote machine situation!'
           end
-         
-
+  end
+  
+  def show_ajax_result
+          @http_results = HttpResult.order("id DESC").all
+          respond_to do |format|
+                  format.js
+          end
   end
   
 end

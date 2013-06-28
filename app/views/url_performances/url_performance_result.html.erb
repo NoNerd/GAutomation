@@ -1,0 +1,38 @@
+# encoding: utf-8
+
+<%= render 'header'%>
+
+<div class="container">
+    <div class="thumbnail">
+                    <br/>
+                    <p class="kt18"><%= link_to '清空全部结果', upr_delete_all_path,data: { confirm: 'Are you sure?' }%></p>
+    </div>
+</div>
+
+
+
+<br/>
+
+<div class="container">
+    <div class="thumbnail" style="padding:0">
+<table class="table">
+    <thead>
+  <tr>
+    <th style="font-family:Comic Sans MS; font-size:16px">Url</th>
+    <th style="font-family:Comic Sans MS; font-size:16px">Browser</th>
+    <th style="font-family:Comic Sans MS; font-size:16px">Status</th>
+    <th style="font-family:Comic Sans MS; font-size:16px">Response Time</th>
+    <th style="font-family:Comic Sans MS; font-size:16px">Run Time</td>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody id="ajax">
+  </tbody>
+</table>
+
+<br />
+</div>
+</div>
+
+</br>
+

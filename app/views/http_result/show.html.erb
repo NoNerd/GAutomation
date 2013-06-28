@@ -6,7 +6,6 @@
 <% type = {1=>"gomeprelive",2=>"atgsit",3=>"atguat"}%>
 <div class="container">
     <div class="thumbnail">
-
         <br/>
             <p class="kt18"><font class="cm15">ID：<%= @step.id%>&nbsp; Description: </font><%= @step.description%></p>
             <p class="kt18">校验类型：<font class="cm15"><%= @step.hre_type%></font></p>
@@ -16,16 +15,17 @@
             <p class="kt18">所在环境：<font class="cm15"><%= type[@step.env]%></font></p>
     </div>
 </div>
-<br/>
 <% end %>
 
+
+<br/>
 <div class="container">
     <div class="thumbnail" style="padding-left:0px">
+        <br/>
             <% res = {"PASS"=>"text-success", "FAIL"=>"text-error"}%>
-            <br/>
             <p class="kt18">&nbsp;<%=link_to '清除全部记录',http_result_delete_all_path%></p>
+            
             <table class="table">
-                
                 <tr>
                     <th style="font-family:Kaiti; font-size:18px">运行时间</th>
                     <th style="font-family:Kaiti; font-size:18px"><font class="comic"> id </font></th>
@@ -33,17 +33,10 @@
                     <th style="font-family:Kaiti;font-size:18px">结果</th>
                </tr>
                 
-                
-                <% @http_results.each do |htrl|%>
-                <tr class="cm15">
-                    <td><%= htrl.updated_at%></td>
-                    <td><%= link_to htrl.http_automation_id, "/http_result/show/#{htrl.http_automation_id}"%></td>
-                    <td class="<%= res[htrl.result]%>"><%=  raw(htrl.actual.gsub(/(.{40})/,"\\1<br/>"))%></td>
-                    <td class="<%= res[htrl.result]%>"><%= htrl.result%></td>
-                </tr>
-                <%end%>
+                <tbody id="http_result_ajax">
+                </tbody>
             </table>
-            
+
         
     </div>
 </div>

@@ -1,0 +1,8 @@
+<% res = {"PASS"=>"text-success", "FAIL"=>"text-error"}%>
+<tr class="cm15">
+             <td><%= result.updated_at%></td>
+            <td><%= link_to result.http_automation_id, "/http_result/show/#{result.http_automation_id}"%></td>
+            <td class="<%= res[result.result]%>"><%=  raw(result.actual.gsub(/(.{40})/,"\\1<br/>"))%></td>
+            <td class="<%= res[result.result]%>"><%= result.result%></td>
+</tr>
+

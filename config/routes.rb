@@ -1,5 +1,21 @@
 GAutomation::Application.routes.draw do
 
+  resources :url_performances 
+  
+  post "run_url_performance" => "url_performances#run_url_performance", :as=>"url_perform_run"
+
+  get "url_performance_result" => "url_performances#url_performance_result", :as=>"url_performance_result"
+
+  get "result/show_task"
+  
+  get "result/show_task_result/:task_id"=>"result#show_task_result", :as=>"show_task_result"
+  
+  get "result/show_tc_result/:testcase_id" => "result#show_tc_result", :as=>"show_tc_result"
+
+  get "upr_delete_all"=>"url_performances#upr_delete_all", :as=>"upr_delete_all"
+
+  get "ajax_result" => "url_performances#ajax_result", :as=>"ajax_result"
+
   resources :teststeps
 
 
@@ -11,6 +27,7 @@ GAutomation::Application.routes.draw do
         get 'update_testcase_tasks', :action=>"update_testcase_tasks", :as=>"update_tt"
         post 'add_relative_tasks',:action=>"add_relative_tasks",:as=>"add_relative_tasks"
         get 'show_steps',:action=>"show_steps",:as=>"show_steps"
+        match 'delete_step/:step_id', :action=>"delete_step", :as=>"delete_step"
   end
 
 
@@ -18,9 +35,17 @@ GAutomation::Application.routes.draw do
           get 'get_relative_testcases', :action=>"get_relative_testcases",:as=>"get_relative_testcases"
           match 'run', :action=>"run",:as=>"run"
           match 'reset', :action=>"reset",:as=>"reset"
-          match 'current_result/:counter', :action=>"current_result",:as=>"current_result"
+          match 'current_result/:counter', :action=>"current_result",:as=>"current_result" 
+          match 'current_result/:counter/:testcase_id/steps', :action=>"show_steps", :as=>"show_current_steps"
   end
 
+   match "show_step_detail/:step_detail"=>"tasks#show_step_detail", :as=>"show_step_detail"
+   
+   match "close_step_detail/:step_id" => "tasks#close_step_detail", :as=>"close_step_detail"
+   
+   match "show_ajax_result" => "http_result#show_ajax_result", :as=>"show_ajax_result"
+
+   match "search_http" => "http_automations#search_http", :as=>"search_http"
 
   get "introduction/usinghttp"
 

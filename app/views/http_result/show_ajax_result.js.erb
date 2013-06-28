@@ -1,0 +1,8 @@
+
+
+
+<%if @http_results.length != 0%>
+ <%= render  partial:"result",  collection: @http_results %>
+<%else%>
+<script>$("#http_result_ajax").html('<tr class="cm15"><td colspan="4">No Record......</td></tr>');</script>
+<%end%>

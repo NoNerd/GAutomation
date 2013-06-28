@@ -119,6 +119,11 @@ class TestcasesController < ApplicationController
           @testcase = Testcase.find(params[:testcase_id])
   end
   
-  
+  def delete_step
+          @step = Teststep.find(params[:step_id])
+          @step.destroy
+          
+          redirect_to testcase_show_steps_path(params[:testcase_id])
+  end
   
 end

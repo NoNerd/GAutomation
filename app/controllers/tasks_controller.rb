@@ -104,14 +104,14 @@ class TasksController < ApplicationController
           tcandtks = Tcandtask.where(["task_id = ?",params[:task_id]])
           tcandtks.each_with_index do |tcatk,id|
                   if tcandtks.length-1 == id
-                          @testcases = "#{tcatk.testcase_id}"
+                          @testcases = @testcases+"#{tcatk.testcase_id}"
                   else
-                          @testcases = "#{tcatk.testcase_id},"
+                          @testcases = @testcases+"#{tcatk.testcase_id},"
                   end
           end
          @task = Task.find(params[:task_id])
          system("staf  #{@remote_machine.ipaddress} var set shared var task_id=#{@task.id}") 
-          system("staf #{@remote_machine.ipaddress} var set shared var task_counter=#{@task.run_counter}")
+          system("staf #{@remote_machine.ipaddress} var set shared var task_counter=#{@task.run_counter+1}")
           system("staf #{@remote_machine.ipaddress} var set shared var testcases=#{@testcases}")
           system("staf  #{@remote_machine.ipaddress} process start command ruby #{@remote_machine.funcscriptpath}/run.rb")
         @remote_machine.update_attributes({:comstatus => HTTP_RUNNING_STATUS})
@@ -130,9 +130,22 @@ class TasksController < ApplicationController
   
   def current_result
                 @task = Task.find(params[:task_id])
-                @testcases_result = TestcaseResult.where(["counter = ? and task_id = ?", params[:counter].to_i-1, @task.id])
-
+                @testcases_result = TestcaseResult.where(["counter = ? and task_id = ?", params[:counter].to_i, @task.id])
   end
   
+  def show_steps
+          @task = Task.find(params[:task_id])
+          @testcase_result = TestcaseResult.find(params[:testcase_id])
+          @testcase = Testcase.find(@testcase_result.testcase_id)
+          @steps_result = StepResult.where(["task_id = ? and counter = ? and testcase_id = ?",params[:task_id],params[:counter],@testcase.id])
+  end
+  
+  def show_step_detail
+        @step = Teststep.find(params[:step_detail])
+  end
+  
+  def close_step_detail
+          @step = params[:step_id]
+  end
   
 end

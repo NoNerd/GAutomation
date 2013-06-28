@@ -34,14 +34,14 @@
        <% @teststeps.each do |tc|%>
             <tr class="cm15">
                 <td><%= best_in_place tc,:step ,:html_attrs=>{ :style=>"width:20px;"}%></td>
-                <td><%= best_in_place tc,:description ,:html_attrs=>{ :style=>"width:105px;"}%></td>
+                <td  style="font-family:Kaiti"><%= best_in_place tc,:description ,:html_attrs=>{ :style=>"width:105px;font-family: Kaiti"}%></td>
                 <td><%= best_in_place tc,:step_method ,:html_attrs=>{ :style=>"width:90px;font-family:Comic Sans MS"},:type=>:select,:collection=>[["action","action"],["verify","verify"],["cus-action","cus-action"],["cus-verify","cus-verify"]]%></td>
-                <td><%= best_in_place tc,:obj_name ,:html_attrs=>{ :style=>"width:105px;"}%></td>
-                <td><%= best_in_place tc,:call_method ,:html_attrs=>{ :style=>"width:105px;"}%></td>
-                <td><%= best_in_place tc,:input ,:html_attrs=>{ :style=>"width:105px;"}%></td>
-                <td><%= best_in_place tc,:expect ,:html_attrs=>{ :style=>"width:105px;"}%></td>
-                <td><%= best_in_place tc,:run, :html_attrs=>{:style=>"width:20px"},:type=>:select,:collection=>[[0,"Yes"],[1,"No"]]%></td>
-                    <td><%= link_to 'Destroy',tc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= best_in_place tc,:obj_name ,:html_attrs=>{ :style=>"width:105px;;font-family:Comic Sans MS"}%></td>
+                <td><%= best_in_place tc,:call_method ,:html_attrs=>{ :style=>"width:75px;;font-family:Comic Sans MS"}%></td>
+                <td><%= best_in_place tc,:input ,:html_attrs=>{ :style=>"width:105px;font-family:Comic Sans MS"}, :display_with=>lambda{|v| v.gsub(/(.{10})/,"\\1<br/>").html_safe}%></td>
+                <td><%= best_in_place tc,:expect ,:html_attrs=>{ :style=>"width:105px;font-family:Comic Sans MS"}, :display_with=>lambda{|v| v.gsub(/(.{10})/,"\\1<br/>").html_safe}%></td>
+                <td><%= best_in_place tc,:run, :html_attrs=>{:style=>"width:45px;font-family:Comic Sans MS"},:type=>:select,:collection=>[[0,"Yes"],[1,"No"]]%></td>
+                    <td><%= link_to 'Destroy',testcase_delete_step_path(@testcase.id,tc.id) , data: { confirm: 'Are you sure?' } %></td>
             </tr>
        <%end%>         
         </table>

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Runflag:</b>
+  <%= @url_performance.runflag %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @url_performance.url %>
+</p>
+
+<p>
+  <b>Browser:</b>
+  <%= @url_performance.browser %>
+</p>
+
+
+<%= link_to 'Edit', edit_url_performance_path(@url_performance) %> |
+<%= link_to 'Back', url_performances_path %>
