@@ -16,7 +16,7 @@ class HttpResultController < ApplicationController
                         machine = RemoteMachine.find(params[:remote_machine])
                         envi = params[:cur_env]
                     
-                        system(" staf  #{machine.ipaddress} var set shared var envi=#{envi} > #{machine.ipaddress}.envi.log")
+                        system(" staf  #{machine.ipaddress} var set shared var envi='#{envi}' > #{machine.ipaddress}.envi.log")
                         system("staf #{machine.ipaddress} process start command ruby #{machine.smokescriptpath}/run.rb > #{machine.ipaddress}.smoke.log")
 
                         redirect_to  '/http_result/show'

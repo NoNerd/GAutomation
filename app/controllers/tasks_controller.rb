@@ -113,7 +113,7 @@ class TasksController < ApplicationController
          system("staf  #{@remote_machine.ipaddress} var set shared var task_id=#{@task.id}") 
           system("staf #{@remote_machine.ipaddress} var set shared var task_counter=#{@task.run_counter+1}")
           system("staf #{@remote_machine.ipaddress} var set shared var testcases=#{@testcases}")
-          system("staf  #{@remote_machine.ipaddress} process start command ruby #{@remote_machine.funcscriptpath}/run.rb")
+          system("staf  #{@remote_machine.ipaddress} process start command #{@remote_machine.funcscriptpath}/run.bat ")
         @remote_machine.update_attributes({:comstatus => HTTP_RUNNING_STATUS})
 
         @task.update_attributes({:run_counter=>@task.run_counter+1})
@@ -147,5 +147,16 @@ class TasksController < ApplicationController
   def close_step_detail
           @step = params[:step_id]
   end
+  
+  def show_func_step_result
+          @task = Task.find(params[:task_id])
+          @testcase_result = TestcaseResult.find(params[:testcase_id])
+          @testcase = Testcase.find(@testcase_result.testcase_id)
+          @steps_result = StepResult.where(["task_id = ? and counter = ? and testcase_id = ?",params[:task_id],params[:counter],@testcase.id])
+          respond_to do |format|
+                  format.js
+          end
+  end
+  
   
 end

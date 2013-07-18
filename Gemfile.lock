@@ -44,6 +44,8 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    haml (4.0.3)
+      tilt
     hike (1.2.2)
     i18n (0.6.4)
     irwi (0.4.2)
@@ -123,6 +125,7 @@ DEPENDENCIES
   RedCloth
   best_in_place
   coffee-rails (~> 3.2.1)
+  haml
   irwi
   jquery-rails
   kaminari

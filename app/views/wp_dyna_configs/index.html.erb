@@ -1,0 +1,27 @@
+<h1>Listing wp_dyna_configs</h1>
+
+<table>
+  <tr>
+    <th>Start time</th>
+    <th>Interval hour</th>
+    <th>Circulate</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @wp_dyna_configs.each do |wp_dyna_config| %>
+  <tr>
+    <td><%= wp_dyna_config.start_time %></td>
+    <td><%= wp_dyna_config.interval_hour %></td>
+    <td><%= wp_dyna_config.circulate %></td>
+    <td><%= link_to 'Show', wp_dyna_config %></td>
+    <td><%= link_to 'Edit', edit_wp_dyna_config_path(wp_dyna_config) %></td>
+    <td><%= link_to 'Destroy', wp_dyna_config, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Wp dyna config', new_wp_dyna_config_path %>

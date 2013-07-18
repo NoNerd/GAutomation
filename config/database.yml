@@ -26,3 +26,12 @@ development:
   # database: db/production.sqlite3
   # pool: 5
   # timeout: 5000
+
+other_development:
+  adapter: mysql2
+  database: showslow
+  pool: 5
+  timeout: 5000
+  username: admin
+  password: admin
+  host: 10.57.4.30

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130626035350) do
+ActiveRecord::Schema.define(:version => 20130703082801) do
 
   create_table "hosts", :force => true do |t|
     t.string   "url"
@@ -121,18 +121,21 @@ ActiveRecord::Schema.define(:version => 20130626035350) do
   end
 
   create_table "url_performances", :force => true do |t|
-    t.integer  "runflag"
+    t.integer  "runflag",    :default => 0
     t.string   "url"
     t.string   "browser"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "dyna_id"
   end
 
   create_table "url_results", :force => true do |t|
     t.string   "url"
     t.integer  "response_time"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.string   "info",          :default => "PASS"
+    t.string   "browser"
   end
 
   create_table "users", :force => true do |t|
@@ -169,5 +172,41 @@ ActiveRecord::Schema.define(:version => 20130626035350) do
 
   add_index "wiki_pages", ["creator_id"], :name => "index_wiki_pages_on_creator_id"
   add_index "wiki_pages", ["path"], :name => "index_wiki_pages_on_path", :unique => true
+
+  create_table "wp_dyna_configs", :force => true do |t|
+    t.datetime "start_time"
+    t.integer  "interval_hour"
+    t.integer  "circulate"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "wp_dyna_summaries", :force => true do |t|
+    t.string   "url"
+    t.string   "belong_period"
+    t.integer  "impression_best"
+    t.integer  "impression_worst"
+    t.integer  "impression_average"
+    t.integer  "onload_best"
+    t.integer  "onload_worst"
+    t.integer  "onload_average"
+    t.integer  "fullload_best"
+    t.integer  "fullload_worst"
+    t.integer  "fullload_average"
+    t.integer  "render_best"
+    t.integer  "render_worst"
+    t.integer  "render_average"
+    t.integer  "server_best"
+    t.integer  "server_worst"
+    t.integer  "server_average"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "wp_run_situs", :force => true do |t|
+    t.string   "date"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

@@ -1,0 +1,29 @@
+<%= form_for(@wp_dyna_config) do |f| %>
+  <% if @wp_dyna_config.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@wp_dyna_config.errors.count, "error") %> prohibited this wp_dyna_config from being saved:</h2>
+
+      <ul>
+      <% @wp_dyna_config.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :start_time %><br />
+    <%= f.datetime_select :start_time %>
+  </div>
+  <div class="field">
+    <%= f.label :interval_hour %><br />
+    <%= f.number_field :interval_hour %>
+  </div>
+  <div class="field">
+    <%= f.label :circulate %><br />
+    <%= f.number_field :circulate %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

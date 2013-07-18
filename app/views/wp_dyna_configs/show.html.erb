@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Start time:</b>
+  <%= @wp_dyna_config.start_time %>
+</p>
+
+<p>
+  <b>Interval hour:</b>
+  <%= @wp_dyna_config.interval_hour %>
+</p>
+
+<p>
+  <b>Circulate:</b>
+  <%= @wp_dyna_config.circulate %>
+</p>
+
+
+<%= link_to 'Edit', edit_wp_dyna_config_path(@wp_dyna_config) %> |
+<%= link_to 'Back', wp_dyna_configs_path %>

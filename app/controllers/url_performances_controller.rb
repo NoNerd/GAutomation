@@ -87,12 +87,22 @@ class UrlPerformancesController < ApplicationController
   
   def  run_url_performance
           @machine = RemoteMachine.find(params[:remote_machine])
-          system("staf  #{@machine.ipaddress} process start command ruby #{@machine.smokescriptpath}/url_performance.rb")
-          redirect_to url_performance_result_path
+          if params['md'].to_i == 1
+                    system("staf  #{@machine.ipaddress} process start command ruby #{@machine.smokescriptpath}/url_performance_wp.rb")
+                    redirect_to url_performance_result_path    
+          else
+                    system("staf  #{@machine.ipaddress} process start command ruby #{@machine.smokescriptpath}/url_performance_dt.rb")
+                    redirect_to   url_showslow_result_path
+          end
   end
   
   def url_performance_result
-          @results = UrlResult.all
+              @results = UrlResult.all
+  end
+  
+  def url_showslow_result
+       @url_preformances = UrlPerformance.where(["browser = ?", "ie"])
+         @results = Dynatrace.order("id DESC" ).page(params[:page]).per(50).all         
   end
   
   def upr_delete_all
@@ -102,6 +112,82 @@ class UrlPerformancesController < ApplicationController
   
   def  ajax_result
           @results =  UrlResult.all
+  end
+  
+  def  search_by_date
+          if params[:search_by_day].strip == ""
+                  if params[:search_by_address]  == ""
+                        @results =   Dynatrace.order("timetoonload DESC, timetofullload DESC" ).page(params[:page]).per(50).all     
+                  else
+                        @results =   Dynatrace.order("timetoonload DESC, timetofullload DESC").where("details LIKE '%#{params[:search_by_address]}\"%'")
+                        if @results.length > 0
+                                @wd = WpDynaSummary.new
+                                @wd.impression_best = @results.minimum("timetoonload")
+                                @wd.impression_worst = @results.maximum("timetoonload")
+                        end
+                  end
+         else
+                 time_arr = params[:search_by_day].split("-").map{|a| a.to_i}
+                 arr = Time.utc(*time_arr,0,0,0)
+                 arr2 = Time.utc(*time_arr, 23,59,59)
+               if params[:search_by_address]  == ""      
+                      @results = Dynatrace.order("timetoonload DESC, timetofullload DESC").where(timestamp: arr..arr2)
+               else
+                       @results = Dynatrace.order("timetoonload DESC, timetofullload DESC").where(timestamp: arr..arr2).where("details LIKE '%#{params[:search_by_address]}\"%'")                        
+                        
+                        if @results.length > 1
+                        @wd = WpDynaSummary.new
+                        @wd.url = params[:search_by_address]
+                        @wd.summary_count = @results.length
+                        @wd.onload_best = @results.minimum("timetoonload")
+                        @wd.onload_worst = @results.maximum("timetoonload")
+                        @wd.onload_average = @results.average("timetoonload")
+                        @wd.impression_best = @results.minimum("timetoimpression")
+                        @wd.impression_worst = @results.maximum("timetoimpression")
+                        @wd.impression_average = @results.average("timetoimpression")
+                        @wd.fullload_best = @results.minimum("timetofullload")
+                        @wd.fullload_worst = @results.maximum("timetofullload")
+                        @wd.fullload_average = @results.average("timetofullload")
+                        @wd.render_worst = @results.maximum("timeinrendering")
+                        @wd.render_best = @results.minimum("timeinrendering")
+                        @wd.render_average = @results.average("timeinrendering")
+                        @wd.network_worst = @results.maximum("timeonnetwork")
+                        @wd.network_best = @results.minimum("timeonnetwork")
+                        @wd.network_average = @results.average("timeonnetwork")
+                        @wd = [] << @wd
+               end
+               end         
+          end
+  end
+  
+  
+  def search_by_range_time
+          if params[:search_by_address].strip == ""
+                @results = Dynatrace.order("timetoonload DESC, timetofullload DESC").where(timestamp: params[:start_time]..params[:end_time])
+          else
+                 @results = Dynatrace.order("timetoonload DESC, timetofullload DESC").where(timestamp: params[:start_time]..params[:end_time]).where("details LIKE '%#{params[:search_by_address]}\"%'")
+                if @results.length > 1
+                        @wd = WpDynaSummary.new
+                        @wd.url = params[:search_by_address]
+                        @wd.summary_count = @results.length
+                        @wd.onload_best = @results.minimum("timetoonload")
+                        @wd.onload_worst = @results.maximum("timetoonload")
+                        @wd.onload_average = @results.average("timetoonload")
+                        @wd.impression_best = @results.minimum("timetoimpression")
+                        @wd.impression_worst = @results.maximum("timetoimpression")
+                        @wd.impression_average = @results.average("timetoimpression")
+                        @wd.fullload_best = @results.minimum("timetofullload")
+                        @wd.fullload_worst = @results.maximum("timetofullload")
+                        @wd.fullload_average = @results.average("timetofullload")
+                        @wd.render_worst = @results.maximum("timeinrendering")
+                        @wd.render_best = @results.minimum("timeinrendering")
+                        @wd.render_average = @results.average("timeinrendering")
+                        @wd.network_worst = @results.maximum("timeonnetwork")
+                        @wd.network_best = @results.minimum("timeonnetwork")
+                        @wd.network_average = @results.average("timeonnetwork")
+                        @wd = [] << @wd
+               end
+          end
   end
   
 end

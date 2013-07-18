@@ -1,0 +1,2 @@
+module WpDynaConfigsHelper
+end

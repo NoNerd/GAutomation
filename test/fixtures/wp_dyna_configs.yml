@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  start_time: 2013-07-02 16:46:42
+  interval_hour: 1
+  circulate: 1
+
+two:
+  start_time: 2013-07-02 16:46:42
+  interval_hour: 1
+  circulate: 1

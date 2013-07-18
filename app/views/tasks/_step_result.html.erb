@@ -1,0 +1,10 @@
+<%color={0=>"text-success", 1=>"text-warning", 2=>"text-error", nil=>""} %>
+<% result={0=>"PASS", 1=>"FAIL", 2=>"ERROR", nil=> ""}%>
+<tr class="cm15">
+             <td><%= step_result.ipaddress%></td>
+             <td class="<%= color[step_result.result]%>"><%= result[step_result.result]%></td>
+             <td><%= step_result.actual.gsub(/(.{30})/,"\\1<br/>").html_safe %></td>
+             <td><%= step_result.screenshot_path.gsub(/(.{30})/,"\\1<br/>").html_safe%></td>
+             <td id="show_step_<%= step_result.teststep_id%>"><%= link_to "Show Step", show_step_detail_path(step_result.teststep_id) ,:remote=>true%></td>
+</tr>
+<tr id="info_detail<%= step_result.teststep_id%>"></tr>

@@ -1,0 +1,47 @@
+<%= render 'header'%>
+
+<div class="container">
+    <div class="thumbnail">
+        <br/>
+                <p class="kt18">起始时间：<font class="cm15"><%=best_in_place @wp_config,:start_time,:html_attrs=>{:style=>"font-family:Comic Sans MS"},:display_with=>lambda {|v| v.strftime("%H:%M:%S")}%></font></p>
+                <p class="kt18">间隔时间：<font class="cm15"><%=best_in_place @wp_config,:interval_hour, :html_attrs=>{:style=>"font-family:Comic Sans MS"}%></font></p>
+                <p class="kt18">循环次数：<font class="cm15"><%=best_in_place @wp_config,:circulate, :html_attrs=>{:style=>"font-family:Comic Sans MS"}%></font></p>
+    </div>
+</div>
+<br/>
+
+
+<div class="container">
+    <div class="thumbnail">
+        <br/>
+        <p class="kt18">当前已经执行测试过程的日期列表(点击可以查看详情)：</p>
+        <% if @wp_run_situ.length == 0%>
+                <p class="kt18">当前没有相关数据</p>
+        <%else%>
+            <% @wp_run_situ.each_with_index do |wrs,id| %>
+                <% if  (id+1)%3 == 1 %>
+                        <p><font class="cm15"><%= id+1%>:  <%= link_to  change_time_style(wrs.date, @wp_config.interval_hour) , show_wp_run_situ_result_path(:period=>wrs.date) ,:remote=>true%>   </font>&nbsp;&nbsp;
+                <%elsif (id+1)%3 != 0 %>
+                        <font class="cm15"> <%= id+1%>:  <%= link_to change_time_style(wrs.date, @wp_config.interval_hour), show_wp_run_situ_result_path(:period=>wrs.date) ,:remote=>true %>  </font>&nbsp;&nbsp;
+                <%else%>
+                       <font class="cm15"> <%= id+1%>:  <%= link_to  change_time_style(wrs.date, @wp_config.interval_hour) , show_wp_run_situ_result_path(:period=>wrs.date) ,:remote=>true%>  </font> </p>     
+                <%end%>
+            <%end%>
+        <% end %>
+    </div>
+</div>
+<br/>
+
+<br/>
+<div id="period_part_information" class="container">
+</div>
+<br/>
+<div id="wp_run_perf_ajax" class="container">
+    <div class="thumbnail">
+        <br/>
+        <p class="kt18">没有相关结果</p>
+    </div></div>
+    
+</p>
+
+<br/>

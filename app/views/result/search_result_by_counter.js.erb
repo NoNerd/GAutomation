@@ -1,0 +1,5 @@
+<% if @results.length != 0%>
+$('#task_result').html('<%=j render partial: 'task_result', collection: @results%>')
+<%else%>
+$('#task_result').html('<p class="kt18"><br/>&nbsp;未找到需要的结果</p>')
+<%end%>

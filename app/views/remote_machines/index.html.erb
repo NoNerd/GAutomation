@@ -43,6 +43,8 @@
     <td class="<%= status_color[remote_machine.comstatus]%>"><%= status_hash[remote_machine.comstatus] %>
         <%if  remote_machine.comstatus == 0 or remote_machine.comstatus == 4 or remote_machine.comstatus == 3 or remote_machine.comstatus == 5%>
                 <%= link_to '(检查状态)', remote_machine_check_path(remote_machine), :style=>"font-size:15px;font-family:Kaiti"%>
+         <%elsif   remote_machine.comstatus == 2%>
+            <%= link_to '(终止运行)',  stop_machine_running_situ_path(remote_machine)  ,:style=>"font-size:15px;font-family:Kaiti"%>
         <%end%>
     </td>
   </tr>

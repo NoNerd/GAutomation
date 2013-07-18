@@ -15,9 +15,13 @@
 <div class="container">
     <div class="thumbnail">
             <br />
+            <%= form_tag( search_result_by_counter_path, :remote=>true) do %>
             <p class="kt18">
                 通过 <font class="comic">counter</font> 查询： 
-                
+                <%=text_field_tag "counter",nil, :style=>"font-family:Comic Sans MS"%>
+                <input type="hidden" id="task" name="task" value="<%= params[:task_id]%>">
+                <input type="submit" value="确认查询" class="btn btn-primary" style="font-family: Kaiti">
+            <% end %>    
            </p>
     </div>
 </div>
@@ -28,7 +32,6 @@
     <div class="thumbnail" style="padding:0px">
             <table class="table">
                 <tr>
-                    <th style="font-size:16px">用例编号</th>
                    <th style="font-size:16px">执行次</th>
                    <th style="font-size:16px">状态</th>
                    <th style="font-size:16px">机器</th>
@@ -37,19 +40,11 @@
                     <th></th>
                 </tr>
                 
-                <% if @results%>
-                <% @results.each_with_index do |tc,id|%>
-                        <tr class="cm15">
-                            <td><%= id+1%></td>
-                            <td><%= tc.counter%></td>
-                            <td><%= status[tc.status]%></td>
-                            <td><%=tc.ipaddress%></td>
-                            <td><%= tc.updated_at%></td>
-                            <td class="<%= color[tc.result]%>"><%= result[tc.result]%></td>
-                            <td><%= link_to 'Detail',  task_show_current_steps_path(@task.id,tc.counter,tc.id)%></td>
-                        </tr>
-                <%end%>
-                <%end%>
+                
+                <tbody id="task_result">
+                    <%= render partial: 'task_result', collection: @results%>
+                </tbody>
+                
             </table>    
     </div>
 </div>

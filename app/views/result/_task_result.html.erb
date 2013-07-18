@@ -1,0 +1,11 @@
+<%color={0=>"text-success", 1=>"text-warning", 2=>"text-error", nil=>""} %>
+<% result={0=>"PASS", 1=>"FAIL", 2=>"ERROR", nil=> ""}%>
+<% status={0=>"Unkown", 1=>"Running", 2=>"Exception", 3=>"Finished"}%>
+<tr class="cm15">
+                            <td><%= task_result.counter%></td>
+                            <td><%= status[task_result.status]%></td>
+                            <td><%=task_result.ipaddress%></td>
+                            <td><%= task_result.updated_at%></td>
+                            <td class="<%= color[task_result.result]%>"><%= result[task_result.result]%></td>
+                            <td><%= link_to 'Detail',  task_show_current_steps_path(@task.id,task_result.counter,task_result.id)%></td>
+</tr>

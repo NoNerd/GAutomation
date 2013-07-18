@@ -1,5 +1,8 @@
 GAutomation::Application.routes.draw do
 
+  resources :wp_dyna_configs
+
+
   resources :url_performances 
   
   post "run_url_performance" => "url_performances#run_url_performance", :as=>"url_perform_run"
@@ -16,11 +19,18 @@ GAutomation::Application.routes.draw do
 
   get "ajax_result" => "url_performances#ajax_result", :as=>"ajax_result"
 
+  match "search_result_by_counter" => "result#search_result_by_counter", :as=>"search_result_by_counter"
+
+  match "url_showslow_result" => "url_performances#url_showslow_result", :as=>"url_showslow_result"
+  
+  match "show_wp_run_situ_result" => "result#show_wp_run_situ_result" , :as=>"show_wp_run_situ_result"
+
   resources :teststeps
 
 
   resources :tobjects
 
+   resources :wp_dyna_configs
 
   resources :testcases do
         get 'check_testcase_and_task' , :action=>"check_testcase_and_task"
@@ -46,16 +56,22 @@ GAutomation::Application.routes.draw do
    match "show_ajax_result" => "http_result#show_ajax_result", :as=>"show_ajax_result"
 
    match "search_http" => "http_automations#search_http", :as=>"search_http"
+   
+   match "url_showslow_period_result" => "result#url_showslow_period_result", :as=>"url_showslow_period_result"
 
   get "introduction/usinghttp"
 
   get "introduction/usingfunc"
+  
+  get "introduction/installation" => "introduction#installation", :as=>"introduction_installation"
 
   get "http_result/show(/:id)" => "http_result#show"
   
   get "http_result/delete_all" => "http_result#clear_all"
   
   match "http_result/run_http" => "http_result#run_http"
+  
+  match "show_func_step_result" => "tasks#show_func_step_result", :as=>"show_func_step_result"
 
   resources :http_automations
 
@@ -77,6 +93,9 @@ GAutomation::Application.routes.draw do
 
   get "index/introduction"
   
+  match "search_by_date"=>"url_performances#search_by_date", :as=>"search_by_date"
+  
+  match "search_by_range_time"=>"url_performances#search_by_range_time", :as=>"search_by_range_time"
 
   resources :users
 
@@ -87,6 +106,8 @@ GAutomation::Application.routes.draw do
  get "user_behave/logout" => "user_behave#logout", :as => "logout"
  
  get "equip/show" => "equip#show"
+
+ match "stop_machine_running_situ/:remote_machine_id" => "remote_machines#stop_machine_running_situ", :as=>"stop_machine_running_situ"
 
 
   # The priority is based upon order of creation:

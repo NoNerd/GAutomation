@@ -86,6 +86,7 @@ class RemoteMachinesController < ApplicationController
   STATUS_WRONG = 5
   STATUS_ONLINE = 0
   STATUS_OFFLINE = 3
+  STATUS_UNKNOWN = 4
   
   def check_machine_situ
           @remote_machine = RemoteMachine.find(params[:remote_machine_id])
@@ -107,5 +108,16 @@ class RemoteMachinesController < ApplicationController
                 redirect_to remote_machine_path, notice: '不能执行更新操作，请检查相关文件信息！'
          end      
   end
+  
+  
+  def  stop_machine_running_situ
+          @remote_machine = RemoteMachine.find(params[:remote_machine_id])
+          system("STAF #{@remote_machine.ipaddress} process start command #{@remote_machine.funcscriptpath}/kill.bat")
+          @remote_machine.update_attributes({:comstatus => STATUS_UNKNOWN})
+          redirect_to remote_machines_path
+  end
+  
+  
+  
   
 end

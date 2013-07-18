@@ -1,0 +1,3 @@
+$("#period_part_information").html("<div class='thumbnail'><p class='kt18'><br/><font class='cm15'><%= change_time_style(params[:period],@wp_config.interval_hour)%>    </font>相关结果</p></div>")
+
+$("#wp_run_perf_ajax").html("<div class='thumbnail' style='padding:0'><table class='table'><%=j render 'wp_result_header'%><%=j render partial: 'wp_period_result', collection: @wp_dyna_summaries%></table></div>")

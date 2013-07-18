@@ -1,0 +1,94 @@
+<%= render 'header'%>
+
+</br/>
+
+<div class="container">
+    <div class="thumbnail">
+            <br/>
+            <p class="kt18"><font class="cm15">dynaTrace </font> 结果展示</p>
+            <p class="kt18">说明： 只显示最近的<font class="cm15">50</font>条记录</p>        
+    </div>
+</div>
+
+<br/>
+<div class="container" >
+    <div class="thumbnail span11" >
+        <div class = "span5">
+            <br/>
+            <p class="kt18">按天查询相关数据：</p>
+            <%= form_tag(search_by_date_path,:remote=>true) do  %>
+            <p class="kt18">日期：
+                <div id="datetimepicker4" class="input-append">
+                <%= text_field_tag 'search_by_day',nil,:style=>"font-family: Comic Sans MS",readonly: true%>
+                <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                </i>
+                </span>
+                </div>
+                <br/>
+                 <font class="cm15">url</font>：
+                 </br/>
+                 <%= select_tag 'search_by_address', options_from_collection_for_select(@url_preformances, 'url','url'),:style=>"font-family:Comic Sans MS;font-size:15px", prompt: "From All"%>
+                 <br/><br/>
+                  <input type="submit" value="确认提交" style="font-family: Kaiti;font-size:16px" class=" btn btn-primary"></p>
+                     <%end%>
+           </div>
+           <div class="span5">
+               <br/>
+           <p class="kt18">按日期区间查询相关数据：</p>
+  
+           <%= form_tag(search_by_range_time_path, :remote=>true) do%>
+           <p class="kt18"> <font class="cm15">
+                  url：
+                </font><%=select_tag 'search_by_address',  options_from_collection_for_select(@url_preformances, 'url','url'),:style=>"font-family:Comic Sans MS;font-size:15px", prompt: "From All"%>
+             <br/>
+               起始：
+               <div id="datetimepicker5" class="input-append">
+                 <%=text_field_tag "start_time",nil,:readonly=>true,:style=>"font-family: Comic Sans MS"%>                
+                 <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                </i>
+                </span>
+                </div>
+                </p><p class="kt18">
+                   
+               终止：
+               <div id="datetimepicker6" class="input-append">
+               <%= text_field_tag "end_time",nil,:readonly=>true, :style=>"font-family:Comic Sans MS"%>  
+               <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                </i>
+                </span>
+                </div></p>
+                
+                 <input type="submit" value="确认提交" style="font-family: Kaiti;font-size:16px" class=" btn btn-primary"></p>
+            <%end%>
+</div>
+    </div>
+</div>
+<br/>
+
+<div class="container" id="short_summary">
+</div>
+
+<br/>
+<div class="container">
+    <div class="thumbnail" style="padding:0">
+        <table class="table">
+            <tr>
+                <th style="font-family: Comic Sans MS;">URL(ms) </th>
+                <th style="font-family: Comic Sans MS;">Impression </th>
+                <th style="font-family: Comic Sans MS;">Onload </th>
+                <th style="font-family: Comic Sans MS;">FullLoad</th>
+                <th style="font-family: Comic Sans MS;">Network</th>
+                <th style="font-family: Comic Sans MS;">Render </th>
+               <th style="font-family: Comic Sans MS;">JS </th>
+               <th style="font-family:Comic Sans MS;">TimeStamp</th>
+            </tr>
+            <tbody id="show_slow_result">
+                <%= render partial: 'showslow_result', collection: @results%>
+            </tbody>        
+</table>        
+    </div>
+</div>
+<br/>

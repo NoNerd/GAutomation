@@ -2,7 +2,7 @@ class TobjectsController < ApplicationController
   # GET /tobjects
   # GET /tobjects.json
   def index
-    @tobjects = Tobject.all
+    @tobjects = Tobject.order("id DESC").all
 
     respond_to do |format|
       format.html # index.html.erb

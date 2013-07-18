@@ -4,6 +4,7 @@ class CreateUrlPerformances < ActiveRecord::Migration
       t.integer :runflag
       t.string :url
       t.string :browser
+     t.integer :dyna_id
 
       t.timestamps
     end

@@ -4,4 +4,8 @@ class IntroductionController < ApplicationController
 
   def usingfunc
   end
+  
+  def installation
+  end
+
 end

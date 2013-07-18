@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  url: MyString
+  belong_period: MyString
+  impression_best: MyString
+  impression_worst: MyString
+  impression_average: MyString
+  onload_best: MyString
+  onload_worst: MyString
+  onload_average: MyString
+  fullload_best: MyString
+  fullload_worst: MyString
+  fullload_average: MyString
+  render_best: 1
+  render_worst: 1
+  render_average: 1
+  server_best: 1
+  server_worst: 1
+  server_average: 1
+
+two:
+  url: MyString
+  belong_period: MyString
+  impression_best: MyString
+  impression_worst: MyString
+  impression_average: MyString
+  onload_best: MyString
+  onload_worst: MyString
+  onload_average: MyString
+  fullload_best: MyString
+  fullload_worst: MyString
+  fullload_average: MyString
+  render_best: 1
+  render_worst: 1
+  render_average: 1
+  server_best: 1
+  server_worst: 1
+  server_average: 1

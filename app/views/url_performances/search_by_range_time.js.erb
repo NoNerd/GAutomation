@@ -1,0 +1,7 @@
+<% if @wd%>
+$("#short_summary").html('<div class="thumbnail" style="padding:0"><br/><p class="kt18">结果汇总：<font class="cm15"><%= params[:start_time]%>--<%= params[:end_time]%></font></p><table class="table"><%=j render "result/wp_result_header"%><%=j render partial: "result/wp_period_result", collection: @wd%></table></div>');
+<%else%>
+$("#short_summary").html("")
+<%end%>
+
+$("#show_slow_result").html('<%=j render partial: "showslow_result", collection: @results%>')

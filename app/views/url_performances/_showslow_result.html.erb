@@ -1,0 +1,10 @@
+<tr class="cm15">
+    <td><%=ActiveSupport::JSON.decode(showslow_result.details)["url"]%></td>
+    <td><%=showslow_result.timetoimpression%></td>
+    <td><%=showslow_result.timetoonload%></td>
+    <td><%=showslow_result.timetofullload%></td>
+    <td><%=showslow_result.timeonnetwork%></td>
+    <td><%=showslow_result.timeinrendering%></td>
+    <td><%=showslow_result.timeinjs%></td>
+    <td><%= showslow_result.timestamp%></td>
+</tr>
