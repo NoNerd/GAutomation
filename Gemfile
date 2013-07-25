@@ -27,6 +27,8 @@ gem "RedCloth"
 gem 'best_in_place'
 gem  'haml'
 
+gem 'roo'
+
 # gem 'bootstrap-timepicker-rails', :require => 'bootstrap-timepicker-rails', :git=> 'git://github.com/tispratik/bootstrap-timepicker-rails.git'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

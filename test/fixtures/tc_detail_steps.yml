@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  belong_ids: MyString
+  description: MyString
+  testcase_id: 1
+
+two:
+  belong_ids: MyString
+  description: MyString
+  testcase_id: 1

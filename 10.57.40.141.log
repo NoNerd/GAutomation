@@ -1,0 +1,4 @@
+Error submitting request, RC: 16
+Additional info
+---------------
+STAFConnectionProviderConnect: Timed out connecting to endpoint: select() timeout: 22, Endpoint: ssl://10.57.40.141

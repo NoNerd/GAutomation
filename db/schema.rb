@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130703082801) do
+ActiveRecord::Schema.define(:version => 20130724040909) do
 
   create_table "hosts", :force => true do |t|
     t.string   "url"
@@ -66,6 +66,14 @@ ActiveRecord::Schema.define(:version => 20130703082801) do
     t.integer  "run_counter", :default => 0
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "tc_detail_steps", :force => true do |t|
+    t.string   "belong_ids"
+    t.string   "description"
+    t.integer  "testcase_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "tcandtasks", :force => true do |t|
@@ -196,11 +204,13 @@ ActiveRecord::Schema.define(:version => 20130703082801) do
     t.integer  "render_best"
     t.integer  "render_worst"
     t.integer  "render_average"
-    t.integer  "server_best"
-    t.integer  "server_worst"
-    t.integer  "server_average"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.integer  "network_best"
+    t.integer  "network_worst"
+    t.integer  "network_average"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "summary_count"
+    t.integer  "timeout_error_counts"
   end
 
   create_table "wp_run_situs", :force => true do |t|
