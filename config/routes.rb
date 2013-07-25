@@ -1,5 +1,8 @@
 GAutomation::Application.routes.draw do
 
+  resources :tc_detail_steps
+
+
   resources :wp_dyna_configs
 
 
@@ -24,6 +27,8 @@ GAutomation::Application.routes.draw do
   match "url_showslow_result" => "url_performances#url_showslow_result", :as=>"url_showslow_result"
   
   match "show_wp_run_situ_result" => "result#show_wp_run_situ_result" , :as=>"show_wp_run_situ_result"
+  
+  match "get_refer_objs" => "tobjects#get_refer_objs", :as=>"get_refer_objs"
 
   resources :teststeps
 
@@ -38,8 +43,13 @@ GAutomation::Application.routes.draw do
         post 'add_relative_tasks',:action=>"add_relative_tasks",:as=>"add_relative_tasks"
         get 'show_steps',:action=>"show_steps",:as=>"show_steps"
         match 'delete_step/:step_id', :action=>"delete_step", :as=>"delete_step"
+        match 'destroy_detail_step/:detail_step_id', :action=>"destroy_detail_step", :as=>"destroy_detail_step"
+        match 'add_detail_step', :action=>"add_detail_step",:as=>"add_detail_step"
+        collection {post :import}
+       
   end
 
+        
 
   resources :tasks do
           get 'get_relative_testcases', :action=>"get_relative_testcases",:as=>"get_relative_testcases"
