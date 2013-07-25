@@ -11,6 +11,7 @@
                 <p class="kt18">当前运行步骤名称：<font class="cm15"><%= link_to @testcase.name, testcase_show_steps_path(@testcase)%></font><font style="font-size:15px;color:gray">(点击查看用例步骤详情)</font></p>
                 <p class="kt18">步骤描述信息：<%= @testcase.description%></p>
                 <p class="kt18">运行环境：<font class="cm15"><%= situ_env[@testcase.browser]%></font></p>
+
     </div>
 </div>
 <br/>
@@ -18,6 +19,7 @@
 <input type="hidden" value="<%= params[:task_id]%>" id="js_task_id">
 <input type="hidden" value="<%= params[:testcase_id]%>" id="js_testcase_id">
 <input type="hidden" value="<%= params[:counter]%>" id="js_counter">
+
 
 <div class="container">
     <div class="thumbnail" style="padding-left:0">
@@ -28,8 +30,12 @@
                             <td style="font-family:Comic Sans MS;font-size:16px">Actual</td>
                             <td style="font-family:Comic Sans MS;font-size:16px">ImagePath</td>
                         </tr>
-
-                        <tbody id="func_result_ajax">                        
+    
+                        <%if  @testcase_result.status != 3%>
+                        <tbody id="func_result_ajax">
+                            <%else%>
+                            <tbody>
+                            <%end%>                        
                                 <%= render partial: "step_result", collection: @steps_result%>
                         </tbody>
             </table>

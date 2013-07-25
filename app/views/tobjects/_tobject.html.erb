@@ -1,0 +1,10 @@
+<% if  !tobject.nil?%>
+<tr class="cm15">
+    <td><%=best_in_place tobject,:syn_name  , :html_attrs=>{:style=>"width:90px;font-family:Comic Sans MS"}%></td>
+    <td><%=best_in_place tobject,:label_types  , :html_attrs=>{:style=>"width:90px;font-family:Comic Sans MS"}%></td>
+    <td><%=best_in_place tobject,:label_attributes  , :html_attrs=>{:style=>"width:90px;font-family:Comic Sans MS"}%></td>
+    <td><%=best_in_place tobject,:attribute_values  , :html_attrs=>{:style=>"width:90px;font-family:Comic Sans MS"},  :display_with=>lambda{|v| v.gsub(/(.{40})/,"\\1<br/>").html_safe} %></td>
+    <td style="font-family:Kaiti"><%=best_in_place tobject,:description  , :html_attrs=>{:style=>"width:90px;font-family:Kaiti"}%></td>
+    <td><%= link_to 'Destroy', tobject, method: :delete, data: { confirm: 'Are you sure?' }, :style=>"font-family:Comic Sans MS" %></td>
+</tr>
+<%end%>

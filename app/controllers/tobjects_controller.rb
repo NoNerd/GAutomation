@@ -82,4 +82,17 @@ class TobjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  
+  def get_refer_objs
+          @refer = params[:refered]
+          if @refer == "all"
+                  @tobjects = Tobject.all
+         elsif @refer == "search"
+                 @tobjects = Tobject.where("syn_name like '%#{params["search-info"]}%'")
+         else
+                @tobjects = Tobject.where("syn_name like '%#{params[:refered]}%'")
+          end
+  end
+
 end

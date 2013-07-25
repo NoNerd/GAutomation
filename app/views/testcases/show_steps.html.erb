@@ -4,6 +4,16 @@
     <div class="thumbnail">
             <br/>
             <p class="kt18"> 测试用例名称： <font class="cm15"><%= @testcase.name%></font></p>
+            <p class="kt18">
+                验证功能点与对应步骤(<%= link_to  '新增用例描述', testcase_add_detail_step_path(@testcase.id), :style=>"font-family:Kaiti"%>)：
+                <% @tc_detail_steps.each do |tc_detail_step|%>
+                <p class="kt18">
+                步骤 <font class="cm15"> <%= best_in_place  tc_detail_step, :belong_ids ,:html_attrs=>{ :style=>"width:60px;font-family:Comic Sans MS"}%> :   </font>
+                <%= best_in_place  tc_detail_step, :description  ,:html_attrs=>{ :style=>"width:105px;font-family:Kaiti; font-size:18px"}, :class=>"text-info"%>
+                <%= link_to 'Delete', testcase_destroy_detail_step_path(@testcase.id, tc_detail_step.id), :style=>"font-family:Comic Sans MS;font-size:15px"%>
+                <%end%>
+                </p>
+            </p>
     </div>
 </div>
 <br/>
@@ -12,12 +22,22 @@
     <div class="thumbnail">
              <br/>
             <p class="kt18"> 创建新步骤，点击<%= link_to "这里",new_teststep_path(:testcase_id=>@testcase.id)%></p>        
+            <p class="kt18">导出用例步骤：<font class="cm15"><%= link_to "Excel",  testcase_show_steps_path(@testcase.id, format: "xls")%>  </font>格式</p>
+            <p class="kt18"> 导入用例步骤：
+                <%= form_tag import_testcases_path, multipart: true do%>
+                        <%= file_field_tag :file, :value=>"Upload"%>
+                        <%= submit_tag "Import", :class=>"btn btn-primary", :style=>"font-family:Comic Sans MS; font-size:14px"%>
+                    <input type="hidden"  name="testcase_id"  id="testcase_id" value="<%= @testcase.id%>">
+                <%end%>
+            </p>
     </div>
 </div>
 
 <br/>
 <div class="container">
+    
     <div class="thumbnail" style="padding-left:0">
+        
             <table class="table">
                 <tr>
                         <th  style="font-family: Comic Sans MS; font-size:16px;">Step</th>
@@ -27,7 +47,8 @@
                         <th  style="font-family: Comic Sans MS; font-size:16px;">CallMethod</th>
                         <th  style="font-family: Comic Sans MS; font-size:16px;">Input</th>
                         <th  style="font-family: Comic Sans MS; font-size:16px;">Expect</th>
-                        <th  style="font-family: Comic Sans MS; font-size:16px;">RunFlag</th>                    
+                        <th  style="font-family: Comic Sans MS; font-size:16px;">RunFlag</th>   
+                        <th></th>                
                 </tr>
             
        
@@ -35,7 +56,7 @@
             <tr class="cm15">
                 <td><%= best_in_place tc,:step ,:html_attrs=>{ :style=>"width:20px;"}%></td>
                 <td  style="font-family:Kaiti"><%= best_in_place tc,:description ,:html_attrs=>{ :style=>"width:105px;font-family: Kaiti"}%></td>
-                <td><%= best_in_place tc,:step_method ,:html_attrs=>{ :style=>"width:90px;font-family:Comic Sans MS"},:type=>:select,:collection=>[["action","action"],["verify","verify"],["cus-action","cus-action"],["cus-verify","cus-verify"]]%></td>
+                <td><%= best_in_place tc,:step_method ,:html_attrs=>{ :style=>"width:100px;font-family:Comic Sans MS"},:type=>:select,:collection=>[["action","action"],["verify","verify"],["cus-action","cus-action"],["cus-verify","cus-verify"],["reuse-step","reuse-step"]]%></td>
                 <td><%= best_in_place tc,:obj_name ,:html_attrs=>{ :style=>"width:105px;;font-family:Comic Sans MS"}%></td>
                 <td><%= best_in_place tc,:call_method ,:html_attrs=>{ :style=>"width:75px;;font-family:Comic Sans MS"}%></td>
                 <td><%= best_in_place tc,:input ,:html_attrs=>{ :style=>"width:105px;font-family:Comic Sans MS"}, :display_with=>lambda{|v| v.gsub(/(.{10})/,"\\1<br/>").html_safe}%></td>
@@ -47,4 +68,4 @@
         </table>
     </div>
 </div>
-        </br/>
+        <br/>

@@ -1,0 +1,27 @@
+<h1>Listing tc_detail_steps</h1>
+
+<table>
+  <tr>
+    <th>Belong ids</th>
+    <th>Description</th>
+    <th>Testcase</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tc_detail_steps.each do |tc_detail_step| %>
+  <tr>
+    <td><%= tc_detail_step.belong_ids %></td>
+    <td><%= tc_detail_step.description %></td>
+    <td><%= tc_detail_step.testcase_id %></td>
+    <td><%= link_to 'Show', tc_detail_step %></td>
+    <td><%= link_to 'Edit', edit_tc_detail_step_path(tc_detail_step) %></td>
+    <td><%= link_to 'Destroy', tc_detail_step, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tc detail step', new_tc_detail_step_path %>

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Belong ids:</b>
+  <%= @tc_detail_step.belong_ids %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @tc_detail_step.description %>
+</p>
+
+<p>
+  <b>Testcase:</b>
+  <%= @tc_detail_step.testcase_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_tc_detail_step_path(@tc_detail_step) %> |
+<%= link_to 'Back', tc_detail_steps_path %>

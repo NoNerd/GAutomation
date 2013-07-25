@@ -7,13 +7,38 @@
                     <p class="kt18">需要多重定位的元素，需要使用‘>’分割符。如 <font class="comic">frame>a, :id>:class, abc>cde</font></p>
                     <p class="kt18"></p>
                     <p class="kt18">添加测试元素对象点击<%= link_to '这里' ,new_tobject_path%></p>
+    <%= form_tag(get_refer_objs_path(:refered=>"search"),:remote=>true)  do %>
+       <p class="kt18">搜索：<input type="text" id="search-info" name="search-info" style="font-family:Comic Sans MS"/>
+           &nbsp;<input type="submit" class="btn btn-primary" value="确定"  style="font-family:Kaiti"/></p> 
+    <% end %>
     </div>
 </div>
 <br/>
 
 
+
+<br/>
 <div class="container">
     <div class="thumbnail" style="padding:0">
+        
+            <ul class="nav nav-pills">
+                <li class="active"  id="all">
+                    <%= link_to "All Objects" , get_refer_objs_path(:refered=>"all") ,:style=>"font-family: Comic Sans MS", :remote=>true%>
+                </li>
+                <li id="pre">
+                    <%= link_to "Pre Objects" , get_refer_objs_path(:refered=>"pre") ,:style=>"font-family: Comic Sans MS", :remote=>true%>
+                </li>
+                <li id="uat">
+                  <%= link_to "Uat Objects" , get_refer_objs_path(:refered=>"uat") ,:style=>"font-family: Comic Sans MS", :remote=>true%>
+                </li>
+                <li id="sit">
+                    <%= link_to "Sit Objects" , get_refer_objs_path(:refered=>"sit") ,:style=>"font-family: Comic Sans MS", :remote=>true%>
+                </li>
+                <li id="search">
+                    <%= link_to "Search Result", "#",:style=>"font-family: Comic Sans MS", :disable=>"true"%>
+                </li>
+            </ul>
+        
 <table class="table">
   <tr>
     <th  style="font-family: Comic Sans MS; font-size:16px;">Name</th>
@@ -24,17 +49,9 @@
     <th></th>
   </tr>
 
-<% @tobjects.each do |tobject| %>
-  <tr class="cm15">
-    <td><%=best_in_place tobject,:syn_name  , :html_attrs=>{:style=>"width:90px;font-family:Comic Sans MS"}%></td>
-    <td><%=best_in_place tobject,:label_types  , :html_attrs=>{:style=>"width:90px;font-family:Comic Sans MS"}%></td>
-    <td><%=best_in_place tobject,:label_attributes  , :html_attrs=>{:style=>"width:90px;font-family:Comic Sans MS"}%></td>
-    <td><%=best_in_place tobject,:attribute_values  , :html_attrs=>{:style=>"width:90px;font-family:Comic Sans MS"},  :display_with=>lambda{|v| v.gsub(/(.{40})/,"\\1<br/>").html_safe} %></td>
-    <td style="font-family:Kaiti"><%=best_in_place tobject,:description  , :html_attrs=>{:style=>"width:90px;font-family:Kaiti"}%></td>
-    <td><%= link_to 'Destroy', tobject, method: :delete, data: { confirm: 'Are you sure?' }, :style=>"font-family:Comic Sans MS" %></td>
-
-  </tr>
-<% end %>
+    <tbody id="test_objects">
+        <%= render partial: 'tobject', collection: @tobjects%>
+    </tbody>
 </table>
 </div>
 </div>

@@ -115,14 +115,38 @@ class TestcasesController < ApplicationController
   end
   
   def show_steps
-          @teststeps = Teststep.where(["testcase_id = ?", params[:testcase_id]])
+          @teststeps = Teststep.order(:step).where(["testcase_id = ?", params[:testcase_id]])
           @testcase = Testcase.find(params[:testcase_id])
+          @tc_detail_steps = TcDetailStep.where(["testcase_id = ? ", params[:testcase_id]])
+          respond_to do |format|
+                  format.html
+                  format.xls
+          end
   end
   
   def delete_step
           @step = Teststep.find(params[:step_id])
           @step.destroy
           
+          redirect_to testcase_show_steps_path(params[:testcase_id])
+  end
+  
+  def  import
+          Testcase.import(params[:file],params[:testcase_id])
+          redirect_to testcase_show_steps_path(params[:testcase_id])
+  end
+  
+  
+  def  destroy_detail_step
+          @tc_detail_step = TcDetailStep.find(params[:detail_step_id])
+          @tc_detail_step.destroy
+          redirect_to  testcase_show_steps_path(params[:testcase_id])
+  end
+  
+  def  add_detail_step
+          @tc_detail_step = TcDetailStep.new
+          @tc_detail_step.testcase_id = params[:testcase_id]
+          @tc_detail_step.save
           redirect_to testcase_show_steps_path(params[:testcase_id])
   end
   

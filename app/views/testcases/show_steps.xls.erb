@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+
+<Worksheet ss:Name="Sheet1">  
+    <Table>
+           <Row>
+               <Cell><Data ss:Type="String">step</Data></Cell>
+               <Cell><Data ss:Type="String">description</Data></Cell>
+               <Cell><Data ss:Type="String">step_method</Data></Cell>
+               <Cell><Data ss:Type="String">obj_name</Data></Cell>
+               <Cell><Data ss:Type="String">call_method</Data></Cell>
+               <Cell><Data ss:Type="String">input</Data></Cell>
+               <Cell><Data ss:Type="String">expect</Data></Cell>
+               <Cell><Data ss:Type="String">run</Data></Cell>
+          </Row>
+           
+           <%@teststeps.each do |step| %>
+           <Row>
+                <Cell><Data ss:Type="Number"><%=step.step%></Data></Cell>
+                <Cell><Data ss:Type="String"><%=step.description%></Data></Cell>
+                <Cell><Data ss:Type="String"><%=step.step_method%></Data></Cell>
+                <Cell><Data ss:Type="String"><%=step.obj_name%></Data></Cell>
+                <Cell><Data ss:Type="String"><%=step.call_method%></Data></Cell>
+                <Cell><Data ss:Type="String"><%=step.input%></Data></Cell>
+                <Cell><Data ss:Type="String"><%=step.expect%></Data></Cell>
+                <Cell><Data ss:Type="Number"><%=step.run%></Data></Cell>
+           </Row>
+           <%end%>
+    </Table>
+
+</Worksheet>
+</Workbook>

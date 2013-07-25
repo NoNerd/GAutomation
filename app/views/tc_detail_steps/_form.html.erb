@@ -1,0 +1,29 @@
+<%= form_for(@tc_detail_step) do |f| %>
+  <% if @tc_detail_step.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tc_detail_step.errors.count, "error") %> prohibited this tc_detail_step from being saved:</h2>
+
+      <ul>
+      <% @tc_detail_step.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :belong_ids %><br />
+    <%= f.text_field :belong_ids %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :testcase_id %><br />
+    <%= f.number_field :testcase_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
