@@ -62,7 +62,7 @@
                             <% if session[:user].nil?%>
                                 <li style="font-family: KaiTi; font-size: 15px" ><%= link_to '登录', login_path%></li>
                             <%else%>
-                                <li style="font-family: KaiTi; font-size: 15px"><a href=""><strong><%= session[:user].username%></strong>
+                                <li style="font-family: KaiTi; font-size: 15px;margin-top: 10px"><font style="font-family: Comic Sans MS; font-size: 15px"><%= session[:user].username%></font>
                                     <% case session[:user].position%>
                                         <% when 0%>
                                             (管理员)
@@ -71,7 +71,7 @@
                                         <% when 2%>
                                             (游客)
                                     <%end%>
-                                    |</a> </li>
+                                    | </li>
                                 <li style="font-family: KaiTi; font-size: 15px"><%= link_to '登出', logout_path%></li>   
                             <% end%>
                         </ul>

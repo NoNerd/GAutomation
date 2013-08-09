@@ -4,7 +4,7 @@ class TestcasesController < ApplicationController
   # GET /testcases
   # GET /testcases.json
   def index
-    @testcases = Testcase.all
+    @testcases = Testcase.order(:name).all
     @tasks = Task.all
     @spec_testcase = session[:tc]
       session[:tc] = nil
@@ -126,8 +126,15 @@ class TestcasesController < ApplicationController
   
   def delete_step
           @step = Teststep.find(params[:step_id])
+          step_number = @step.step
+                    step_number = step_number.nil?  ?   0 : step_number
           @step.destroy
-          
+          rs = Teststep.where(["testcase_id = ? and step > ?",@step.testcase_id, step_number])
+          if rs
+                  rs.each_with_index do |r, id|
+                        r.update_attributes(:step=>step_number+id)
+                  end       
+          end
           redirect_to testcase_show_steps_path(params[:testcase_id])
   end
   
@@ -149,5 +156,48 @@ class TestcasesController < ApplicationController
           @tc_detail_step.save
           redirect_to testcase_show_steps_path(params[:testcase_id])
   end
+  
+  def  multi_handle_steps
+          if params[:delete] 
+                  if   !params[:ckbox].nil?
+                  Teststep.delete(params[:ckbox])
+                  end
+                  redirect_to  testcase_show_steps_path(params[:testcase_id])
+          elsif  params[:change_yes]
+                  rs = Teststep.where(id: params[:ckbox])
+                  if rs.length != 0 and !rs.nil?
+                          rs.each do |r|
+                                r.update_attributes({:run=>0})
+                        end
+                  end
+                  redirect_to   testcase_show_steps_path(params[:testcase_id])
+          elsif params[:change_no]
+                  tps = Teststep.where(id: params[:ckbox])
+                  if tps.length != 0 and !tps.nil?
+                          tps.each do |r|
+                                r.update_attributes({:run=>1})
+                        end 
+                  end
+                  redirect_to   testcase_show_steps_path(params[:testcase_id])
+          end
+  end
+  
+  def  insert_step
+          @tsp = Teststep.new
+          step_number = Teststep.find(params[:teststep_id]).step
+          step_number = step_number.nil?  ?   0 : step_number
+          @tsp.testcase_id = params[:testcase_id]
+          @tsp.step = step_number + 1
+          rs = Teststep.where(["testcase_id = ? and step > ?",params[:testcase_id], step_number])
+          if rs
+                rs.each_with_index   do |sp,id|
+                        break  if  (id == 0 and  sp.step != step_number + 1)
+                        sp.update_attributes(:step=>sp.step+1)
+                end
+          end
+          @tsp.save
+          redirect_to     testcase_show_steps_path(params[:testcase_id])
+  end
+  
   
 end

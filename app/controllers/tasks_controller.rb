@@ -1,6 +1,8 @@
 #encoding: utf-8
 
 class TasksController < ApplicationController
+  
+  
   # GET /tasks
   # GET /tasks.json
   def index
@@ -158,5 +160,25 @@ class TasksController < ApplicationController
           end
   end
   
+  def   cancel_related_tc
+            Tcandtask.delete_all(["task_id = ? and testcase_id = ?", params[:task_id], params[:testcase_id]])
+           redirect_to task_get_relative_testcases_path(params[:task_id])
+  end
+  
+  def   change_running_status
+          tc = Testcase.find(params[:testcase_id])
+          if  tc.run == 1
+                  tc.update_attributes(:run=>0)
+          else
+                  tc.update_attributes(:run=>1)
+          end
+          redirect_to task_get_relative_testcases_path(params[:task_id])
+  end
+  
+  def   delete_steps
+          TestcaseResult.delete_all(["counter = ? and testcase_id = ? and task_id = ?", params[:counter], params[:testcase_id],params[:task_id]])
+          StepResult.delete_all(["counter = ? and testcase_id = ? and task_id = ?", params[:counter], params[:testcase_id], params[:task_id]])
+          redirect_to   show_task_result_path(params[:task_id])
+  end
   
 end

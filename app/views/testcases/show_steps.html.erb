@@ -11,6 +11,7 @@
                 步骤 <font class="cm15"> <%= best_in_place  tc_detail_step, :belong_ids ,:html_attrs=>{ :style=>"width:60px;font-family:Comic Sans MS"}%> :   </font>
                 <%= best_in_place  tc_detail_step, :description  ,:html_attrs=>{ :style=>"width:105px;font-family:Kaiti; font-size:18px"}, :class=>"text-info"%>
                 <%= link_to 'Delete', testcase_destroy_detail_step_path(@testcase.id, tc_detail_step.id), :style=>"font-family:Comic Sans MS;font-size:15px"%>
+                
                 <%end%>
                 </p>
             </p>
@@ -40,7 +41,7 @@
         
             <table class="table">
                 <tr>
-                        <th  style="font-family: Comic Sans MS; font-size:16px;">Step</th>
+                        <th  style="font-family: Comic Sans MS; font-size:16px;text-align: center" colspan="2" >Step</th>
                         <th  style="font-family: Comic Sans MS; font-size:16px;">Description</th>
                         <th  style="font-family: Comic Sans MS; font-size:16px;">StepMethod</th>
                         <th  style="font-family: Comic Sans MS; font-size:16px;">Object</th>
@@ -48,23 +49,33 @@
                         <th  style="font-family: Comic Sans MS; font-size:16px;">Input</th>
                         <th  style="font-family: Comic Sans MS; font-size:16px;">Expect</th>
                         <th  style="font-family: Comic Sans MS; font-size:16px;">RunFlag</th>   
-                        <th></th>                
+                        <th colspan="2"></th>
                 </tr>
             
-       
+       <%= form_tag(testcase_multi_handle_steps_path(@testcase)) do%>
        <% @teststeps.each do |tc|%>
             <tr class="cm15">
+                <td><%= check_box_tag 'ckbox[]', tc.id%></td>
                 <td><%= best_in_place tc,:step ,:html_attrs=>{ :style=>"width:20px;"}%></td>
-                <td  style="font-family:Kaiti"><%= best_in_place tc,:description ,:html_attrs=>{ :style=>"width:105px;font-family: Kaiti"}%></td>
-                <td><%= best_in_place tc,:step_method ,:html_attrs=>{ :style=>"width:100px;font-family:Comic Sans MS"},:type=>:select,:collection=>[["action","action"],["verify","verify"],["cus-action","cus-action"],["cus-verify","cus-verify"],["reuse-step","reuse-step"]]%></td>
-                <td><%= best_in_place tc,:obj_name ,:html_attrs=>{ :style=>"width:105px;;font-family:Comic Sans MS"}%></td>
-                <td><%= best_in_place tc,:call_method ,:html_attrs=>{ :style=>"width:75px;;font-family:Comic Sans MS"}%></td>
+                <td  style="font-family:Kaiti"><%= best_in_place tc,:description ,:html_attrs=>{ :style=>"width:105px;font-family: Kaiti"}, :display_with=>lambda{|v| v.gsub(/(.{6})/,"\\1<br/>").html_safe}%></td>
+                <td><%= best_in_place tc,:step_method ,:html_attrs=>{ :style=>"width:100px;font-family:Comic Sans MS"},:type=>:select,:collection=>[["action","action"],["verify","verify"],["cus-action","cus-action"],["cus-verify","cus-verify"],["reuse-step","reuse-step"],["reuse-tc","reuse-tc"],["checkpoint","checkpoint"]]%></td>
+                <td><%= best_in_place tc,:obj_name ,:html_attrs=>{ :style=>"width:105px;;font-family:Comic Sans MS"}, :display_with=>lambda{|v| v.gsub(/(.{10})/,"\\1<br/>").html_safe} %></td>
+                <td><%= best_in_place tc,:call_method ,:html_attrs=>{ :style=>"width:75px;;font-family:Comic Sans MS"}, :display_with=>lambda{|v| v.gsub(/(.{10})/,"\\1<br/>").html_safe} %></td>
                 <td><%= best_in_place tc,:input ,:html_attrs=>{ :style=>"width:105px;font-family:Comic Sans MS"}, :display_with=>lambda{|v| v.gsub(/(.{10})/,"\\1<br/>").html_safe}%></td>
                 <td><%= best_in_place tc,:expect ,:html_attrs=>{ :style=>"width:105px;font-family:Comic Sans MS"}, :display_with=>lambda{|v| v.gsub(/(.{10})/,"\\1<br/>").html_safe}%></td>
                 <td><%= best_in_place tc,:run, :html_attrs=>{:style=>"width:45px;font-family:Comic Sans MS"},:type=>:select,:collection=>[[0,"Yes"],[1,"No"]]%></td>
-                    <td><%= link_to 'Destroy',testcase_delete_step_path(@testcase.id,tc.id) , data: { confirm: 'Are you sure?' } %></td>
+                 <td><%= link_to 'Destroy',testcase_delete_step_path(@testcase.id,tc.id) , data: { confirm: 'Are you sure?' } %></td>
+                 <td><%= link_to 'Insert', testcase_insert_step_path(@testcase.id, tc.id)%></td>
             </tr>
-       <%end%>         
+       <%end%>
+       <p>
+       <div style="margin-left:10px;margin-top: 5px;">
+       <%= submit_tag '更改为运行', :name=>"change_yes", :class=>"btn btn-primary", :style=>"font-family: Kaiti; font-size: 16px;"%>
+       <%= submit_tag '更改为不运行', :name=>"change_no", :class=>"btn btn-primary", :style=>"font-family: Kaiti; font-size: 16px;"%>
+       <%= submit_tag  '批量删除',:name=>"delete", :class=>"btn btn-primary", :style=>"font-family: Kaiti; font-size: 16px;"%>
+       </div>
+       </p>
+       <% end %>         
         </table>
     </div>
 </div>

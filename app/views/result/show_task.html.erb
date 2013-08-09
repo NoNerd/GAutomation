@@ -13,7 +13,7 @@
     <div class="thumbnail" style="padding-left:0px">
             <table class="table">
                 <tr>
-                    <th style="font-size:16px">编号</th>
+                    <th style="font-size:16px">任务</th>
                     <th  style="font-size:16px">运行次数</th>
                     <th style="font-size:16px">最后运行时间</th>
                     <th></th>
@@ -22,7 +22,7 @@
                 <% if @tasks%>
                 <% @tasks.each_with_index do |task,index|%>
                         <tr class="cm15">
-                                <td><%= index+1%></td>
+                                <td style="font-family: Kaiti"><%=task.description%></td>
                                 <td><%= task.run_counter%></td>
                                 <td><%= task.updated_at%></td>
                                 <td><%=link_to "Show", show_task_result_path(task)%></td>

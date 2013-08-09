@@ -1,9 +1,11 @@
-str = ""
+str = "";
 
-str = "<p class='kt15  text-info'  ><%= @task.description%></p>"
+str = "<p class='kt18  text-info'  ><%= @task.description%></p>"
+
+<% obj = {1=>"运行", 0=>"不运行"} %>
 
 <% @testcases.each do |tc| %>
-        str = str + "<p class='kt18'><font class='cm15'><%= tc.name%>:</font> <%= tc.description%></p>"
+        str = str + "<p class='kt18'><font class='cm15'><%=j link_to  tc.name, testcase_show_steps_path(tc)%>:</font> <%= tc.description%> <font> <font class='text-info'> 状态：</font><%= obj[tc.run]%><%=j link_to '(修改)', change_running_status_path(@task.id, tc.id), :remote=>true%></font> <font> <%=j link_to '取消关联' , cancel_related_tc_path(@task.id, tc.id), :remote=>true   %></font></p>";
 <%end%>
 
 $('#tkandtc').html(str);

@@ -35,21 +35,32 @@
     <br/>
 <div class="container">
     <div class="thumbnail">
-            <h3 style="font-family: Kaiti; color:#009966 "">功能测试</h3>
+            <h3 style="font-family: Kaiti; color:#009966 ">功能测试</h3>
             <p class="kt18"><strong class="Times">1.  </strong>模拟浏览器端的操作: 点击、勾选、取消勾选等; 校验浏览器页面元素显示：是否存在并显示、是否被勾选等。</p>
             <p class="kt18"><strong class="Times">2. </strong>模拟客户端的操作：定位、激活、点击；可以查看并校验其相关的文本信息。</p>
             <p class="kt18"><strong class="Times">3. </strong>数据存储依附数据库，网站端提供调控和用例调整功能；执行测试脚本单独实现。</p>
-            <p class="kt18"><strong class="Times">4. </strong>在<a href="">测试结果</a>中可以查看当前运行的用例以及运行中相应步骤返回的状态。</p>
+            <p class="kt18"><strong class="Times">4. </strong>在<%= link_to  '测试结果', result_show_task_path%>中可以查看当前运行的用例以及运行中相应步骤返回的状态。</p>
     </div>
 </div>
     <br/>
 <div class="container">
     <div class="thumbnail">
-        <h3 style="font-family:Kaiti; color:#009966 "">冒烟测试</h3>
+        <h3 style="font-family:Kaiti; color:#009966 ">冒烟测试</h3>
         <p class="kt18"><strong class="Times">1. </strong>验证 <strong class="Times"> HTTP </strong>返回值状态，主要为<strong class="Times"> Get/Post </strong>。</p>
         <p class="kt18"><strong class="Times">2. </strong>过程中需要存储相关的<strong class="Times"> cookie </strong>值，以此模拟某些必要前提。</p>
         <p class="kt18"><strong class="Times">3. </strong> 脚本中包含以下关键字：<strong class="Times"> HTTP/JSON/COOKIE-BASED </strong>，脚本单独实现。</p>
         <p class="kt18"><strong class="Times">4.  </strong> 数据存储依附<strong class="Times"> yaml </strong>格式。</p>
+    </div>
+</div>
+<br/>
+<div class="container">
+    <div class="thumbnail">
+        <h3 style="font-family: Kaiti; color:#009966">性能测试</h3>
+        <p class="kt18"><strong class="Times">1. </strong>通过脚本调用相关网页性能测试工具接口，获取相关数据信息  </p>
+        <p class="kt18"><strong class="Times">2. </strong>主要涉及的工具：<font class="cm15">dynaTrace Ajax Edition 4.0、Showslow、Watir-webdriver-performance、hundson</font> </p>
+        <p class="kt18"><strong class="Times">3. </strong><font class="cm15">watir-webdriver-performance</font>是功能测试所使用工具关联的网页性能测试工具，但只能返回简单的加载时间，参考价值有限</p>
+        <p class="kt18"><strong class="Times">4. </strong><font class="cm15">dynaTrace Ajax Edition</font>是比较专业的网页性能测试工具，通过改写配置文件，可以传递相关结果到指定的关联工具。这里选用的是<font class="cm15">Showslow</font></p>
+        <p class="kt18"><strong class="Times">5. </strong>在导航栏的冒烟测试的对应下拉链接中，提供了相应的几种方式的结果展示。 </p>
     </div>
 </div>
 <br/>

@@ -1,5 +1,6 @@
 str = ""
 
+<% if  !(@tc_tasks == [])%>
 <% @tc_tasks.each do |tc_task|%>
    <% if tc_task == @tc_tasks.last %>
              str = str + <%= tc_task.task_id %>
@@ -7,6 +8,10 @@ str = ""
               str = str + <%= tc_task.task_id %>+ ","
    <% end %> 
 <% end %>
+<%else%>
+str  = str + "nil"
+<%end%>
+
 
 str = str + "(Check)"
 

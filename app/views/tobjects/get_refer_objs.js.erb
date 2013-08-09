@@ -5,3 +5,4 @@ $("#uat").removeAttr("class");
 $("#sit").removeAttr("class");
 $("#search").removeAttr("class");
 $("#<%= @refer%>").addClass("active");
+$("#kaminari_ajax").html('<%=j paginate @tobjects , :remote=>true%>');

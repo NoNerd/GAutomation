@@ -28,10 +28,11 @@ GAutomation::Application.routes.draw do
   
   match "show_wp_run_situ_result" => "result#show_wp_run_situ_result" , :as=>"show_wp_run_situ_result"
   
+ match "multi_handle_steps" => "testcases#multi_handle_steps", :as=>"multi_handle_steps"
+  
   match "get_refer_objs" => "tobjects#get_refer_objs", :as=>"get_refer_objs"
 
   resources :teststeps
-
 
   resources :tobjects
 
@@ -45,11 +46,14 @@ GAutomation::Application.routes.draw do
         match 'delete_step/:step_id', :action=>"delete_step", :as=>"delete_step"
         match 'destroy_detail_step/:detail_step_id', :action=>"destroy_detail_step", :as=>"destroy_detail_step"
         match 'add_detail_step', :action=>"add_detail_step",:as=>"add_detail_step"
+        match "multi_handle_steps" => "testcases#multi_handle_steps", :as=>"multi_handle_steps"
+        match  "insert_step/:teststep_id"=> "testcases#insert_step", :as=>"insert_step"
         collection {post :import}
-       
   end
 
-        
+   match 'tasks/:task_id/cancel_related_tc/:testcase_id' => "tasks#cancel_related_tc", :as=> "cancel_related_tc"     
+   match 'tasks/:task_id/change_running_status/:testcase_id' => "tasks#change_running_status", :as=> "change_running_status"     
+   match "tasks/:task_id/delete_result/:counter/:testcase_id/steps" =>"tasks#delete_steps", :as=>"delete_steps"
 
   resources :tasks do
           get 'get_relative_testcases', :action=>"get_relative_testcases",:as=>"get_relative_testcases"

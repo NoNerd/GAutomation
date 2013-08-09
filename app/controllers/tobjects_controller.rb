@@ -2,7 +2,7 @@ class TobjectsController < ApplicationController
   # GET /tobjects
   # GET /tobjects.json
   def index
-    @tobjects = Tobject.order("id DESC").all
+    @tobjects = Tobject.order("id DESC").page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -87,11 +87,11 @@ class TobjectsController < ApplicationController
   def get_refer_objs
           @refer = params[:refered]
           if @refer == "all"
-                  @tobjects = Tobject.all
+                  @tobjects = Tobject.page(params[:page])
          elsif @refer == "search"
-                 @tobjects = Tobject.where("syn_name like '%#{params["search-info"]}%'")
+                 @tobjects = Tobject.where("syn_name like '%#{params["search-info"]}%'").page(params[:page])
          else
-                @tobjects = Tobject.where("syn_name like '%#{params[:refered]}%'")
+                @tobjects = Tobject.where("syn_name like '%#{params[:refered]}%'").page(params[:page])
           end
   end
 

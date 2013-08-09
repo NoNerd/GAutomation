@@ -8,4 +8,5 @@
                             <td><%= task_result.updated_at%></td>
                             <td class="<%= color[task_result.result]%>"><%= result[task_result.result]%></td>
                             <td><%= link_to 'Detail',  task_show_current_steps_path(@task.id,task_result.counter,task_result.id)%></td>
+                            <td><%= link_to 'Destroy',  delete_steps_path(@task.id,task_result.counter,task_result.testcase_id), data: { confirm: 'Are you sure?' }%></td>
 </tr>
